@@ -23,8 +23,10 @@ import javax.swing.*;
 
 
 public class PanelFidelizacion extends JFrame implements ActionListener  {
-	
-   static String[] labelsFidelizacion = {" Menu Premio puntos: "," Desayunos Premio puntos: ","Importes Premio puntos:"};
+   static private String Art1="ARTICULO 1";
+   static private String Art2="ARTICULO 2";
+   static private String Import="IMPORTES";
+   static String[] labelsFidelizacion = {Art1,Art2,Import};
    static int numPairs1 = labelsFidelizacion.length;
    static String[] labelsPremios={"Tipo Premios Menu: ","Tipo Premios Desayunos: ","Tipo Premios Importes"};
    static int numPairs2= labelsPremios.length;
@@ -37,7 +39,7 @@ public class PanelFidelizacion extends JFrame implements ActionListener  {
    static JComboBox comboPuntos[]= new JComboBox[numPairs1];
    static JComboBox comboPremios[]=new JComboBox[numPairs2];
    static JComboBox comboGeneradorPuntos[]=new JComboBox[numPairs3];
-   
+  
    
   
    /**
@@ -47,46 +49,60 @@ public class PanelFidelizacion extends JFrame implements ActionListener  {
     */
        static void ConfigurarFidelizacion()  {
        
-		JButtonTrans MODIFICAR=  new JButtonTrans("MODIFICAR");
+		JButtonTrans MODIFICAR=  new JButtonTrans("MODIFICAR");	  
+		MODIFICAR.setForeground(Color.black);
 		JButtonTrans SALIR= new JButtonTrans("SALIR");
+		SALIR.setForeground(Color.black);
 		JButtonTrans CONSULTAR=new JButtonTrans("CONSULTAR");
+		CONSULTAR.setForeground(Color.black);
 		JPanel Botones;
-		JPanel Titulo;
-		SpringLayout layout;
-		JLabel Titulo1= new JLabel("Configuracion Fidelizacion");
 		
+		SpringLayout layout;
+		
+		
+		
+		JLabel nombre = new JLabel("NOMBRE");
+		JLabel puntosxarticulo = new JLabel("PUNTOS");
+		JLabel limite = new JLabel("LIMITE");
+		JLabel premio= new JLabel("PREMIO");
     
        //Create and populate the panel.
 	   layout= new SpringLayout();
+	   JPanel pCampos = new JPanel(layout);
+	   pCampos.setBackground(Color.WHITE);
+	   
        JPanel pPuntos = new JPanel(layout);
+       pPuntos.setBackground(Color.WHITE);
        JPanel pPremios= new JPanel(layout);
+       pPremios.setBackground(Color.WHITE);
        JPanel pGenerador=new JPanel(layout);
-       for (int i = 0; i < numPairs1; i++) {
-           JLabel l = new JLabel(labelsFidelizacion[i], JLabel.TRAILING);
-           pPuntos.add(l);
-           comboPuntos[i] = new JComboBox(PremiosPuntos);
-           l.setLabelFor(comboPuntos[i]);
-           pPuntos.add(comboPuntos[i]);
+       pGenerador.setBackground(Color.WHITE);
+       for (int i = 0; i <numPairs1; i++) {
+             JTextField text = new JTextField();
+             text.setText(labelsFidelizacion[i]);
+            pCampos.add(text);
+            
+         }
+       for (int i = 0; i <numPairs1; i++) {
+         comboPuntos[i] = new JComboBox(PremiosPuntos);
+          pPuntos.add(comboPuntos[i]);
        }
-       for (int i = 0; i < numPairs2; i++) {
-           JLabel l = new JLabel(labelsPremios[i], JLabel.TRAILING);
-           pPremios.add(l);
-           comboPremios[i] = new JComboBox(Premios);
-           l.setLabelFor(comboPremios[i]);
+      for (int i = 0; i < numPairs2; i++){ 
+    	   comboPremios[i] = new JComboBox(Premios);
            pPremios.add(comboPremios[i]);
        }
     
        for (int i = 0; i < numPairs3; i++) {
-           JLabel l = new JLabel(labelsPuntos[i], JLabel.TRAILING);
-           pGenerador.add(l);
-           comboGeneradorPuntos[i] = new JComboBox(puntos);
-           l.setLabelFor(comboGeneradorPuntos[i]);
-           pGenerador.add(comboGeneradorPuntos[i]);
+          comboGeneradorPuntos[i] = new JComboBox(puntos);
+          pGenerador.add(comboGeneradorPuntos[i]);
        }
         
        
-   
-        Botones=new JPanel(new FlowLayout());
+      
+       
+       
+        Botones=new JPanel(new FlowLayout(FlowLayout.LEFT,50,10));
+        Botones.setBackground(Color.WHITE);
         Botones.add(MODIFICAR);
         Botones.add(SALIR);
         Botones.add(CONSULTAR);
@@ -94,19 +110,35 @@ public class PanelFidelizacion extends JFrame implements ActionListener  {
        
        
        //Layout the panel.
-       SpringUtilities.makeCompactGrid(pPuntos,numPairs1,2,6,6,6,6);//xPad, yPad
-       SpringUtilities.makeCompactGrid(pPremios,numPairs2,2,6,6,6,6);//xPad, yPad
-       SpringUtilities.makeCompactGrid(pGenerador,numPairs3,2,6,6,6,6);//xPad, yPad
+       SpringUtilities.makeCompactGrid(pPuntos,numPairs1,1,6,6,6,6);//xPad, yPad
+       SpringUtilities.makeCompactGrid(pPremios,numPairs2,1,6,6,6,6);//xPad, yPad
+       SpringUtilities.makeCompactGrid(pGenerador,numPairs3,1,6,6,6,6);//xPad, yPad
+       SpringUtilities.makeCompactGrid(pCampos,numPairs3,1,6,6,6,6);//xPad, yPad
        JFrame frame = new JFrame("Fidelizacion");
-       frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS) );
-       frame.add(pGenerador);
-       frame.add(pPuntos);
-       frame.add(pPremios);
-       frame.add(Botones);
+       
+       frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+       frame.setBackground(Color.WHITE);
+       JPanel Panel1=new JPanel(new FlowLayout(FlowLayout.LEFT,25,0));
+       Panel1.setBackground(Color.WHITE);
+       JPanel PanelE=new JPanel(new FlowLayout(FlowLayout.LEFT,50,0));
+       PanelE.setBackground(Color.WHITE);
+       PanelE.add(nombre);
+       PanelE.add(puntosxarticulo);
+       PanelE.add(limite);
+       PanelE.add(premio);
+       Panel1.add(pCampos);
+       Panel1.add(pGenerador);
+       Panel1.add(pPuntos);
+       Panel1.add(pPremios);
+       Panel1.add(Botones);
+       frame.add(PanelE);
+       frame.add(Panel1);
        frame.setResizable(false);
+       
+       
        //Display the window.
        frame.setVisible(true);
-       frame.setSize(320,400);
+       frame.setSize(500,250);
        
        Basedatos.loadHSQLDB(); 
        Basedatos.connectDB(); 
@@ -177,5 +209,14 @@ public class PanelFidelizacion extends JFrame implements ActionListener  {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	  static void ConfigurarArticulos(){
+		  
+		  
+		  
+		  
+		  
+		  
+	  }
 
 }
