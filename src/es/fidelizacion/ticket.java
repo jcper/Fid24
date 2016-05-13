@@ -33,17 +33,12 @@ private String contentTicket =
 "\n\n\n\n\n\n\n ";
 
 //El constructor que setea los valores a la instancia
-ticket(String nombre, String apellidos,String codigo, String id, String dateTime, String desayunos, String premiodesayunos, String menus, 
-String premiomenu, String importes, String premioimportes){
+ticket(String nombre, String apellidos,String codigo, String id, String dateTime,String importes, String premioimportes){
 this.contentTicket = this.contentTicket.replace("{{nombre}}", nombre);
 this.contentTicket = this.contentTicket.replace("{{dateTime}}", dateTime);
 this.contentTicket = this.contentTicket.replace("{{apellidos}}", apellidos);
 this.contentTicket = this.contentTicket.replace("{{Codigo}}", codigo);
 this.contentTicket = this.contentTicket.replace("{{ID}}", id);
-this.contentTicket = this.contentTicket.replace("{{Desay}}", desayunos);
-this.contentTicket = this.contentTicket.replace("{{PremioD}}", premiodesayunos);
-this.contentTicket = this.contentTicket.replace("{{Menus}}", menus);
-this.contentTicket = this.contentTicket.replace("{{PremioM}}", premiomenu);
 this.contentTicket = this.contentTicket.replace("{{Impor}}", importes);
 this.contentTicket = this.contentTicket.replace("{{PremioI}}", premioimportes);
 }

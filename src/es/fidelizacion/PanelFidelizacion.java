@@ -25,17 +25,37 @@ public class PanelFidelizacion extends JFrame implements ActionListener  {
    static JScrollPane scroll;
    
    static String[] puntos ={ "0","1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-   static String[] PremiosPuntos={"0","10","20","30","40","50","60","70","80","90","100","200","300","400","500","600","700","800","900","1000"};
-   static String[] Premios ={"0","1 menu","2 menus","3 menus","4 menus","5 menus", "1 desayuno","2 desayunos","3 desayunos","4 desayunos",
-	    "5 desayunos", "5% descuento", "10% descuento", "15% descuento", "20% descuento","25% descuento"};
+   static String[] PremiosPuntos={"Catalogo","0","10","20","30","40","50","60","70","80","90","100","200","300","400","500","600","700","800","900","1000"};
+   static String[] Premios ={"Catalogo","5% descuento","10% descuento","15% descuento","20% descuento","25% descuento"};
    static String datos[][]=new String[3][4];
    
    static JComboBox comboPuntos= new JComboBox(puntos);
    static JComboBox comboPremios=new JComboBox(Premios);
    static JComboBox comboGeneradorPuntos=new JComboBox(PremiosPuntos);
    
-   
-  
+   //Generamos Catalogo de premios
+    static JLabel Lcatologo= new JLabel("Catalogo de Premios");
+    static JLabel Premio1 = new JLabel("Nombre Premio1 ");
+    static JLabel Premio2 = new JLabel("Nombre Premio 2");
+    static JLabel Premio3 = new JLabel("Premio 3");
+    static JLabel Premio4 = new JLabel("Premio 4");
+    static JLabel Premio5 = new JLabel("Premio 5");
+    static JLabel Premio6 = new JLabel("Premio 6");
+    static JLabel Premio7 = new JLabel("Premio 7");
+    static JLabel Premio8 = new JLabel("Premio 8");
+    static JTextField TPremio1 = new JTextField();
+    static JTextField TPremio2 = new JTextField();
+    static JTextField TPremio3 = new JTextField();
+    static JTextField TPremio4 = new JTextField();
+    static JTextField TPremio5 = new JTextField();
+    static JTextField TPremio6 = new JTextField();
+    static JTextField TPremio7 = new JTextField();
+    static JTextField TPremio8 = new JTextField();
+    static JPanel Pcatologo1;
+    static JPanel Pcatologo2;
+    static JPanel Pcatologo3;
+    static JPanel Pcatologo4;
+    
    /**
     * Create the GUI and show it.  For thread safety,
     * this method should be invoked from the
@@ -46,7 +66,7 @@ public class PanelFidelizacion extends JFrame implements ActionListener  {
         datos[1][0]="Articulo 2";
         datos[2][0]="Importe";
     	modelo=new DefaultTableModel(datos,nomcols);
-    
+        
         
         tabla=new JTable(modelo);
         tabla.getModel().setValueAt(String.valueOf(Formulario.puntosporDesayuno), 0, 1);
@@ -84,13 +104,33 @@ public class PanelFidelizacion extends JFrame implements ActionListener  {
 	    Botones.add(MODIFICAR);
 	    Botones.add(SALIR);
 	    Botones.add(CONSULTAR);
-	       
-		
-		  // Parametros de la ventana
+	    
+	    Pcatologo1 = new JPanel(new FlowLayout());
+	    Pcatologo2 = new JPanel(new FlowLayout());
+	    Pcatologo3 = new JPanel(new FlowLayout());
+	    Pcatologo4 = new JPanel(new FlowLayout());
+	    Pcatologo1.add(Premio1);
+	    Pcatologo1.add(TPremio1);
+	    Pcatologo1.add(Premio2);
+	    Pcatologo1.add(TPremio2);
+	    Pcatologo2.add(Premio3);
+	    Pcatologo2.add(TPremio3);
+	    Pcatologo2.add(Premio4);
+	    Pcatologo2.add(TPremio4);
+	    Pcatologo3.add(Premio5);
+	    Pcatologo3.add(TPremio5);
+	    Pcatologo3.add(Premio6);
+	    Pcatologo3.add(TPremio6);
+	    Pcatologo4.add(Premio7);
+	    Pcatologo4.add(TPremio7);
+	    Pcatologo4.add(Premio8);
+	    Pcatologo4.add(TPremio8);
+	    
+	   // Parametros de la ventana
 	   JFrame frame = new JFrame("Configuracion Fidelizacion");
        
         frame.setLayout(new BorderLayout());
-        frame.add(Botones);
+        
         
      
         
@@ -103,7 +143,11 @@ public class PanelFidelizacion extends JFrame implements ActionListener  {
         tabla.setModel(modelo);
         
         // Agregando elementos a la ventana
-        frame.getContentPane().add(scroll, BorderLayout.NORTH);    
+       
+        
+        frame.getContentPane().add(scroll, BorderLayout.CENTER); 
+      
+        frame.getContentPane().add(Botones,BorderLayout.SOUTH );
         frame.pack(); 
         frame.setVisible(true); 
 		
@@ -140,6 +184,7 @@ public class PanelFidelizacion extends JFrame implements ActionListener  {
        		String seleccionadoPremiosMenu=(String) tabla.getModel().getValueAt(0,3);
        		String seleccionadoPremiosDesayunos=(String) tabla.getModel().getValueAt(1,3);
        		String seleccionadoPremiosImportes=(String) tabla.getModel().getValueAt(2,3);
+       		
        	    Basedatos.loadHSQLDB(); 
             Basedatos.connectDB(); 
             Basedatos.createStatement(); 
@@ -170,9 +215,15 @@ public class PanelFidelizacion extends JFrame implements ActionListener  {
 		
 	}
 	
-	  static void ConfigurarArticulos(){
-		  
-		  
+	  static void CatalogoPremios(){
+		  JFrame frame = new JFrame("Configuracion Fidelizacion");
+	       
+	        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+	        
+		    frame.getContentPane().add(Pcatologo1,BorderLayout.CENTER);
+	        frame.getContentPane().add(Pcatologo2,BorderLayout.CENTER);
+	        frame.getContentPane().add(Pcatologo3,BorderLayout.CENTER);
+	        frame.getContentPane().add(Pcatologo4,BorderLayout.CENTER); 
 		  
 		  
 		  

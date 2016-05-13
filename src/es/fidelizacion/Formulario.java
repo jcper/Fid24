@@ -55,58 +55,26 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 	static String PuntosTotales;//variables  puntostotales de saldototal
 	static String IDclientePantalla;//variable  idclientePantalla, idclientebasedatos
 	static String FechaEntradaMysql;
-	static JLabel SaldoMenu;
-    static JLabel SaldoDesayuno;
 	static JLabel SaldoImporte;
-	static JLabel PremioMenu;
-    static JLabel PremioDesayuno;
 	static JLabel PremioImporte;
     static JLabel Time;
     static JLabel SaldoActualI;
-    static JLabel SaldoActualD;
-    static JLabel SaldoActualC;
     static JLabel PremiosI;
-	static JLabel PremiosC;
-	static JLabel PremiosD;
 	static JLabel Factura_Ticket;
     static JLabel texto_Incremento;
 	static JTextField texto_Factura_Ticket;
 	static JLabel texto_SaldoActualI;
-	static JLabel texto_SaldoActualC;
-	static JLabel texto_SaldoActualD;
 	static JLabel texto_PremiosI;
-	static JLabel texto_PremiosC;
-	static JLabel texto_PremiosD;
-	static ButtonGroup SeleccionTipo;
 	static JRadioButton Venta;
-	static JRadioButton Menu ;
-	static JRadioButton Desayunos;
-	static ButtonGroup SeleccionPuntos;
-	static JRadioButton uno;
-	static JRadioButton dos;
-	static JRadioButton tres;
-	static JRadioButton cuatro;
-	static JRadioButton cinco;
-	static JRadioButton seis;
 	static JLabel Incremento;
-	static JButtonTrans CONSUMIRPREMIOSMENU;
-	static JButtonTrans CONSUMIRPREMIOSDESAYUNO;
 	static JButtonTrans CONSUMIRPREMIOSIMPORTE;
 	static JButtonTrans Teclado;
 	JButtonTrans Minimizar;
 	JButtonTrans ImprimirSaldo;
 	static JButtonTrans Configuracion;
-	static int puntosporDesayuno;
-	static int puntosporMenu;
 	static int puntosporImporte;
-	static String PremioDesayunoF;
-	static String PremioMenuF;
 	static String PremioImporteF;
-	static int premioPuntosDesayuno;
-	static int premioPuntosMenu;
 	static int premioPuntosImporte;
-	static int restarpuntos_consumirpremiosdesayuno;
-	static int restarpuntos_consumirpremiosmenu;
 	static int restar_puntos_consumirpremiosimporte;
 	static String UltimaOperacion;
 	static String TipoUltimaOperacion;
@@ -188,56 +156,15 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 		    IdCliente.setFont(fV);
 		    SaldoActualI=  new JLabel(" PUNTOS ");
 		    SaldoActualI.setFont(FM);
-		    SaldoActualD=  new JLabel(" PUNTOS ");
-		    SaldoActualD.setFont(FM);
-		    SaldoActualC=  new JLabel(" PUNTOS ");
-		    SaldoActualC.setFont(FM);
+
 		    JLabel Comidas_desayunos= new JLabel("Nº MENUS O DESAYUNOS");
 		    Comidas_desayunos.setFont(fV);
-		    SeleccionTipo=new ButtonGroup();
+		  
 		     Venta = new JRadioButton("IMPORTES");
 		     Venta.setFont(FM);
 		     Venta.setEnabled(false);
-			 Menu =  new JRadioButton("MENUS");
-			 Menu.setFont(FM);
-			 Menu.setEnabled(false);
-			 Desayunos = new JRadioButton("DESAYUNOS");
-			 Desayunos.setFont(FM);
-			 Desayunos.setEnabled(false);
-			 SeleccionTipo.add(Venta);
-			 SeleccionTipo.add(Menu);
-			 SeleccionTipo.add(Desayunos);
-			 SeleccionPuntos=new ButtonGroup();
-			 uno = new JRadioButton("+1");
-			 uno.setFont(FM);
-			 uno.setEnabled(false);
-			 dos = new JRadioButton("+2");
-			 dos.setFont(FM);
-			 dos.setEnabled(false);
-			 tres = new JRadioButton("+3");
-			 tres.setFont(FM);
-			 tres.setEnabled(false);
-			 cuatro = new JRadioButton("+4");
-			 cuatro.setFont(FM);
-			 cuatro.setEnabled(false);
-			 cinco = new JRadioButton("+5");
-			 cinco.setFont(FM);
-			 cinco.setEnabled(false);
-			 seis = new JRadioButton("+6");
-			 seis.setFont(FM);
-			 seis.setEnabled(false);
-			 SeleccionPuntos.add(uno);
-			 SeleccionPuntos.add(dos);
-			 SeleccionPuntos.add(tres);
-			 SeleccionPuntos.add(cuatro);
-			 SeleccionPuntos.add(cinco);
-			 SeleccionPuntos.add(seis);
 		    PremiosI = new JLabel("PREMIOS ");
 		    PremiosI.setFont(FM);
-			PremiosC = new JLabel("PREMIOS ");
-			PremiosC.setFont(FM);
-		    PremiosD = new JLabel("PREMIOS ");
-		    PremiosD.setFont(FM);
 		    Fecha=new JLabel("Fecha entrada: "+FechaActual.getFecha());
 		    Fecha.setFont(FM);
 		    Time=new JLabel("Hora entrada: "+FechaActual.getTime());
@@ -264,12 +191,6 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 			Aceptar.setFont(fV);
 			Aceptar.setForeground(Color.black);
 			Aceptar.setEnabled(false);
-		    CONSUMIRPREMIOSMENU=new JButtonTrans("CONSUMIR");
-		    CONSUMIRPREMIOSMENU.setFont(fV);
-		    CONSUMIRPREMIOSMENU.setForeground(Color.black);
-		    CONSUMIRPREMIOSDESAYUNO=new JButtonTrans("CONSUMIR");
-		    CONSUMIRPREMIOSDESAYUNO.setFont(fV);
-		    CONSUMIRPREMIOSDESAYUNO.setForeground(Color.black);
 		    CONSUMIRPREMIOSIMPORTE=new JButtonTrans("CONSUMIR");
 		    CONSUMIRPREMIOSIMPORTE.setFont(fV);
 		    CONSUMIRPREMIOSIMPORTE.setForeground(Color.black);
@@ -289,16 +210,11 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 			texto_Factura_Ticket= new JTextField();
 			texto_Factura_Ticket.setEnabled(false);
 		    texto_SaldoActualI=new JLabel();
-		    texto_SaldoActualC=new JLabel();
-		    texto_SaldoActualD=new JLabel();
+		 
 		    texto_PremiosI=new JLabel();
-		    texto_PremiosC=new JLabel();
-		    texto_PremiosD=new JLabel();
-		    SaldoMenu=new JLabel();
-		    SaldoDesayuno=new JLabel();
+		   
 		    SaldoImporte=new JLabel();
-		    PremioMenu=new JLabel();
-		    PremioDesayuno=new JLabel();
+		 
 		    PremioImporte=new JLabel();
 		    Nombre=new JLabel();
 		    Nombre.setFont(fV);
@@ -329,23 +245,12 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 		 Venta.setBounds(100,230,100,21);
 		 Venta.setBackground(Color.WHITE);
 		 Venta.addChangeListener(this);
-		 Menu.setBounds(300,230,100,21);
-		 Menu.setBackground(Color.WHITE);
-		 SaldoActualC.setBounds(new Rectangle (300, 260, 100, 21));
-		 texto_SaldoActualC.setBounds(new Rectangle(315, 280, 50, 21));
-		 Desayunos.setBounds(new Rectangle(500,230,100,21));
-		 Desayunos.setBackground(Color.WHITE);
-		 Desayunos.addChangeListener(this);
-		 SaldoActualD.setBounds(new Rectangle (500, 260, 100, 21));
-		 texto_SaldoActualD.setBounds(new Rectangle(515, 280, 50, 21));
+	
 		 PremiosI.setBounds(100,310,200,21);
 		 texto_PremiosI.setBounds(new Rectangle(155, 310,50, 21));
 		 Cancelar.setBounds(80,370,120,15);
 		 Cancelar.setEnabled(false);
-		 PremiosC.setBounds(300,310,200,21);
-		 texto_PremiosC.setBounds(new Rectangle(355, 310,50, 21));
-		 PremiosD.setBounds(500,310,200,21);
-		 texto_PremiosD.setBounds(new Rectangle(555, 310,50, 21));
+		
 		 Factura_Ticket.setBounds(100,460,300,21);
 		 texto_Factura_Ticket.setBounds(340, 460, 200, 21);
 		 Aceptar.setBounds(550, 460, 100, 21);
@@ -355,18 +260,9 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 		 SALIR.setBounds(new Rectangle(650,500,100,21));
 		 ANULAR.setBounds(new Rectangle(50,500,100,21));
 		 Comidas_desayunos.setBounds(290,350,400,21);
-		 uno.setBounds(275,370,50,21);
-		 uno.setBackground(Color.WHITE);
-		 dos.setBounds(350,370,50,21);
-		 dos.setBackground(Color.WHITE);
-		 tres.setBounds(425,370,50,21);
-		 tres.setBackground(Color.WHITE);
-		 cuatro.setBounds(275,400,50,21);
-		 cuatro.setBackground(Color.WHITE);
-		 cinco.setBounds(350,400,50,21);
-		 cinco.setBackground(Color.WHITE);
-		 seis.setBounds(425,400,50,21);
-		 seis.setBackground(Color.WHITE);
+		
+		
+		
 		 Teclado.setBounds(620,370,64,64);
 		 IdCliente.setBounds(new Rectangle (80, 130, 220, 21));
 		 IdCliente.setVisible(false);
@@ -374,41 +270,25 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 		 Nombre.setVisible(false);
 		 Apellido1.setBounds(new Rectangle (80, 170, 220, 21));
 		 Apellido1.setVisible(false);
-	     SaldoDesayuno.setBounds(300,130,200,21);
-	     SaldoDesayuno.setVisible(false);
-	     SaldoMenu.setBounds(300,130,200,21);
-	     SaldoMenu.setVisible(false);
+	   
 	     SaldoImporte.setBounds(300,130,200,21);
 	     SaldoImporte.setVisible(false);
-		 PremioMenu.setBounds(520,130,300,21);
-		 PremioMenu.setVisible(false);
-		 PremioDesayuno.setBounds(520,130,300,21);
-		 PremioDesayuno.setVisible(false);
+	
 		 PremioImporte.setBounds(520,130,300,21);
 		 PremioImporte.setVisible(false);
-		 CONSUMIRPREMIOSMENU.setBounds(520,160,150,21);
-		 CONSUMIRPREMIOSMENU.setVisible(false);
-		 CONSUMIRPREMIOSDESAYUNO.setBounds(520,160,150,21);
-		 CONSUMIRPREMIOSDESAYUNO.setVisible(false);
+		
 		 CONSUMIRPREMIOSIMPORTE.setBounds(520,160,150,21);
 		 CONSUMIRPREMIOSIMPORTE.setVisible(false);
 		 p.add(Codigo);
 		 p.add(AreaCodigo);
 		 p.add(SaldoActualI);
 		 p.add(texto_SaldoActualI);
-		 p.add(SaldoActualC);
-		 p.add(texto_SaldoActualC);
-		 p.add(SaldoActualD);
-		 p.add(texto_SaldoActualD);
+	
 		 p.add(Venta);
-		 p.add(Menu);
-		 p.add(Desayunos);
+		
 		 p.add(PremiosI);
 		 p.add(texto_PremiosI);
-		 p.add(PremiosC);
-		 p.add(texto_PremiosC);
-		 p.add(PremiosD);
-		 p.add(texto_PremiosD);
+		
 		 p.add(GUARDAR);
 		 p.add(BORRAR);
 		 p.add(SALIR);
@@ -420,26 +300,18 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 		 p.add(Factura_Ticket);
 		 p.add(texto_Factura_Ticket);
 		 p.add(Comidas_desayunos);
-		 p.add(uno);
-		 p.add(dos);
-		 p.add(tres);
-		 p.add(cuatro);
-		 p.add(cinco);
-		 p.add(seis);
+	
 		 p.add(Fecha);
 		 p.add(Time);
 		 p.add(Actualizar);
 		 p.add(IdCliente);
 		 p.add(Nombre);
 		 p.add(Apellido1);
-		 p.add(SaldoMenu);
-		 p.add(SaldoDesayuno);
+	
 		 p.add(SaldoImporte);
-		 p.add(PremioMenu);
+		
 		 p.add(PremioImporte);
-		 p.add(PremioDesayuno);
-		 p.add(CONSUMIRPREMIOSMENU);
-		 p.add(CONSUMIRPREMIOSDESAYUNO);
+		
 		 p.add(CONSUMIRPREMIOSIMPORTE);
 		 p.setBackground(Color.WHITE);
 		 p.add(Logo);
@@ -476,8 +348,7 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 	     
 	     ImprimirSaldo.addActionListener(new ActionListener(){
 	      	   public void actionPerformed(ActionEvent e){
-	      	ticket ticketsaldo=new ticket(Nombre.getText(),Apellido1.getText(),AreaCodigo.getText(),IDclientePantalla,FechaEntradaMysql,texto_SaldoActualD.getText(),
-	      		texto_PremiosD.getText(),texto_SaldoActualC.getText(),texto_PremiosC.getText(),texto_SaldoActualI.getText(),
+	      	ticket ticketsaldo=new ticket(Nombre.getText(),Apellido1.getText(),AreaCodigo.getText(),IDclientePantalla,FechaEntradaMysql,texto_SaldoActualI.getText(),
 	      	   texto_PremiosI.getText());
 	      	try {
 				ticketsaldo.print();
@@ -513,8 +384,7 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 	     
 	     Cancelar.addActionListener(new ActionListener(){
 	      	   public void actionPerformed(ActionEvent e){
-	      		 SeleccionTipo.clearSelection();
-	    		 SeleccionPuntos.clearSelection();
+	      		
 	      		 ActivarTecladoSeleccion();
 	      		   
 	      	   }
@@ -560,12 +430,8 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 	              Basedatos.ConsultaclientesPantalla(CodigoB);
 	              InsertarDatosPantalla1();
 	              int IDBI=Integer.parseInt(IDclientePantalla);
-	              Basedatos.ActualizarPremiosDesayuno(IDBI);
 	              Basedatos.ActualizarPremiosImporte(IDBI);
-	              Basedatos.ActualizarPremiosMenu(IDBI);
-	              Basedatos.ConsultaPuntosPantallaDesayunos(IDBI);
 	              Basedatos.ConsultaPuntosPantallaImportes(IDBI);
-	              Basedatos.ConsultaPuntosPantallaMenus(IDBI);
 	              ActivarTecladoSeleccion();
 	              texto_Incremento.setText("0");
 	              Basedatos.closeHSQLDB();
@@ -605,9 +471,7 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 	              }else{
 	            
 	              int IDBI=Integer.parseInt(IDclientePantalla);
-	              Basedatos.ActualizarPremiosDesayuno(IDBI);
 	              Basedatos.ActualizarPremiosImporte(IDBI);
-	              Basedatos.ActualizarPremiosMenu(IDBI);
 	              Basedatos.closeHSQLDB();
 	              BorrarFormulario();
 	              ventana.setExtendedState(ICONIFIED);
@@ -625,37 +489,7 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 	      				   ventana,"¿Deseas anular la ultima operacion realizada?");
                    if (JOptionPane.OK_OPTION == confirmado){
 	      		  int IDBI=Integer.parseInt(IDclientePantalla);
-	      		if(TipoUltimaOperacion.equals("Menu")){
-	      			 Basedatos.loadHSQLDB(); 
-		             Basedatos.connectDB(); 
-		             Basedatos.createStatement(); 
-	      			 Basedatos.ActualizarSaldoPuntosMenuAnulada(UltimaOperacion, IDBI);
-	      			 Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDBI ,"MENU","Anulados",UltimaOperacion);
-	      			 Basedatos.AnularTabladiariaMenus(IDBI,Formulario.FechaEntradaMysql, UltimaOperacion);
-	      			 Basedatos.ActualizarPremiosMenu(IDBI);
-	      			 Basedatos.ConsultaPuntosPantallaMenus(IDBI);
-	      			 Basedatos.ConsultaclientesPantallaIDclienteMenu(IDBI);
-	      			 Basedatos.closeHSQLDB();
-	      			 InsertarDatosPantalla1();
-		             AreaCodigo.setEnabled(false);
-		             TipoUltimaOperacion="";
-		             UltimaOperacion="";
-	      		}else if(TipoUltimaOperacion.equals("Desayuno")){
-	      			 Basedatos.loadHSQLDB(); 
-		             Basedatos.connectDB(); 
-		             Basedatos.createStatement(); 
-		             Basedatos.ActualizarSaldoPuntosDesayunosAnulada(UltimaOperacion, IDBI);
-		             Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDBI ,"Desayuno","Anulados",UltimaOperacion);
-		             Basedatos.AnularTabladiariaDesayunos(IDBI,Formulario.FechaEntradaMysql, UltimaOperacion);
-		             Basedatos.ActualizarPremiosDesayuno(IDBI);
-		             Basedatos.ConsultaPuntosPantallaDesayunos(IDBI);
-		             Basedatos.ConsultaclientesPantallaIDclienteDesayunos(IDBI);
-	      			 Basedatos.closeHSQLDB();
-	      			 InsertarDatosPantalla1();
-		             AreaCodigo.setEnabled(false);
-		             TipoUltimaOperacion="";
-		             UltimaOperacion="";
-	      		}else if(TipoUltimaOperacion.equals("Importe")){
+	      		if(TipoUltimaOperacion.equals("Importe")){
 	      			 Basedatos.loadHSQLDB(); 
 		             Basedatos.connectDB(); 
 		             Basedatos.createStatement(); 
@@ -673,31 +507,8 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 	      		}
         
 	
-	      		if(TipoUltimaOperacionPremio.equals("PremioDesayuno")){
-	      			 Basedatos.loadHSQLDB(); 
-		             Basedatos.connectDB(); 
-		             Basedatos.createStatement(); 
-		             Basedatos.ActualizarPremiosDesayuno(IDBI);
-		             Basedatos.ConsultaPuntosPantallaDesayunos(IDBI);
-	      			 Basedatos.ConsultaclientesPantallaIDclienteDesayunos(IDBI);
-	      			 Basedatos.closeHSQLDB();
-	      			 InsertarDatosPantalla1();
-	      			 AreaCodigo.setEnabled(false);
-	      			 TipoUltimaOperacionPremio="";
-		            
-	      		}else if(TipoUltimaOperacionPremio.equals("PremioMenu")){
-                	 Basedatos.loadHSQLDB(); 
-		             Basedatos.connectDB(); 
-		             Basedatos.createStatement(); 
-		             Basedatos.ActualizarPremiosMenu(IDBI);
-		             Basedatos.ConsultaPuntosPantallaMenus(IDBI);
-	      			 Basedatos.ConsultaclientesPantallaIDclienteMenu(IDBI);
-	      			 Basedatos.closeHSQLDB();
-	      		     InsertarDatosPantalla1();
-		             AreaCodigo.setEnabled(false);
-		             TipoUltimaOperacionPremio="";
-		            
-                }else if(TipoUltimaOperacionPremio.equals("PremioImporte")){
+	      		
+                if(TipoUltimaOperacionPremio.equals("PremioImporte")){
                 	 Basedatos.loadHSQLDB(); 
 		             Basedatos.connectDB(); 
 		             Basedatos.createStatement(); 
@@ -710,40 +521,8 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 		             TipoUltimaOperacionPremio="";
                 }
 	      		  
-                   if( TipoUltimaOperacionPremioConsumido.equals("PremioConsumidoDesayunoAnulado")){
-                	Basedatos.loadHSQLDB(); 
-		             Basedatos.connectDB(); 
-		             Basedatos.createStatement(); 
-		             Basedatos.AnularPremioConsumidoDesayuno(IDBI);
-		             Basedatos.AnularDesayunoConsumido(IDBI);
-		             String DevolverPuntosconsumidosD=String.valueOf(Formulario.restarpuntos_consumirpremiosdesayuno);
-		             Basedatos.ActualizarSaldoPuntosDesayunos(DevolverPuntosconsumidosD, IDBI);
-		             Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDBI ,"Desayuno","AnuladosCONS",DevolverPuntosconsumidosD);
-		             Basedatos.ActualizarPremiosDesayuno(IDBI);
-		             Basedatos.ConsultaPuntosPantallaDesayunos(IDBI);
-	      			 Basedatos.ConsultaclientesPantallaIDclienteDesayunos(IDBI);
-	      			 Basedatos.closeHSQLDB();
-	      			 InsertarDatosPantalla1();
-		             AreaCodigo.setEnabled(false);
-		             TipoUltimaOperacionPremioConsumido="";
-                }else if( TipoUltimaOperacionPremioConsumido.equals("PremioConsumidoMenuAnulado")){
-                	Basedatos.loadHSQLDB(); 
-		             Basedatos.connectDB(); 
-		             Basedatos.createStatement(); 
-		             Basedatos.AnularPremioConsumidoMenu(IDBI);
-		             Basedatos.AnularMenuConsumido(IDBI);
-		             String DevolverPuntosconsumidosM=String.valueOf(Formulario.restarpuntos_consumirpremiosmenu);
-		             Basedatos.ActualizarSaldoPuntosMenu(DevolverPuntosconsumidosM, IDBI);
-		             Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDBI ,"Menu","AnuladosCONS",DevolverPuntosconsumidosM);
-		             Basedatos.ActualizarPremiosMenu(IDBI);
-		             Basedatos.ConsultaPuntosPantallaMenus(IDBI);
-	      			 Basedatos.ConsultaclientesPantallaIDclienteMenu(IDBI);
-		             Basedatos.closeHSQLDB();
-		             InsertarDatosPantalla1();
-		             AreaCodigo.setEnabled(false);
-		             TipoUltimaOperacionPremioConsumido="";
-		             
-                }else if( TipoUltimaOperacionPremioConsumido.equals("PremioConsumidoImporteAnulado")){
+                  
+                if( TipoUltimaOperacionPremioConsumido.equals("PremioConsumidoImporteAnulado")){
                 	Basedatos.loadHSQLDB(); 
 		             Basedatos.connectDB(); 
 		             Basedatos.createStatement(); 
@@ -768,89 +547,9 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 	            
 	 
 	     
-	     CONSUMIRPREMIOSMENU.addActionListener(new ActionListener(){
-	      	   public void actionPerformed(ActionEvent e){
-	      		   int saldototalMenu=Integer.parseInt(texto_SaldoActualC.getText());
-	      		   if(saldototalMenu>=restarpuntos_consumirpremiosmenu){
-	      			
-	      		 if(PremioMenu.getText().equals("PREMIOS ACTUALES: 0")){
-	      			JOptionPane.showMessageDialog(
-	      				   ventana,
-	      				   "Actualmente no tienes premios");
-	      			 
-	      		 }else{
-	      			 
-	      			int confirmado = JOptionPane.showConfirmDialog(
-	      				   ventana,
-	      				   "Deseas consumir tu premio actual:"+texto_PremiosC.getText());
-
-	      				if (JOptionPane.OK_OPTION == confirmado){
-	      				   System.out.println("Premio Consumido");
-	      				  Basedatos.loadHSQLDB(); 
-	        	          Basedatos.connectDB(); 
-	        	          Basedatos.createStatement();
-	        	          int IDBI=Integer.parseInt(IDclientePantalla);
-	   Basedatos.ActualizarTablaConsumoDesayunos(IDBI,Formulario.FechaEntradaMysql,Formulario.restarpuntos_consumirpremiosmenu,texto_PremiosC.getText());
-	        	          Basedatos.ConsumirPremiosMenu(IDBI);
-	        	          Basedatos.ConsultaclientesPantallaIDclienteMenu(IDBI);
-	        	          String puntosconsumidos=String.valueOf(Formulario.restarpuntos_consumirpremiosmenu);
-	        	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDBI ,"Menu","Consumidos",puntosconsumidos);
-	    	              InsertarDatosPantallaMenu();
-	    	              texto_Incremento.setText("0");
-	    	              Basedatos.closeHSQLDB();
-	    	              TipoUltimaOperacionPremioConsumido="PremioConsumidoMenuAnulado";
-	    	      	      UltimaOperacionPremioConsumido="MenuConsumidoAnulado";
-	    	      	      TipoUltimaOperacion="";
-	    	      	      UltimaOperacion="";
-	      				}else{
-	      				   System.out.println("vale... no borro nada...");
-	      			 }
-	      	   }
-	      	}
-	      	   }
-	      });
+	  
 	     
-	     CONSUMIRPREMIOSDESAYUNO.addActionListener(new ActionListener(){
-	      	   public void actionPerformed(ActionEvent e){
-	      		  int saldototalDesayuno=Integer.parseInt(texto_SaldoActualD.getText());
-	      		  if(saldototalDesayuno>=restarpuntos_consumirpremiosdesayuno){
-	      			
-	      		 if(PremioDesayuno.getText().equals("PREMIOS ACTUALES: 0")){
-	      			JOptionPane.showMessageDialog(
-	      				   ventana,
-	      				   "Actualmente no tienes premios");
-	      			 
-	      		 }else{
-	      			
-	      			int confirmado = JOptionPane.showConfirmDialog(
-	      				   ventana,
-	      				   "Deseas consumir tu premio actual:"+texto_PremiosD.getText());
-
-	      				if (JOptionPane.OK_OPTION == confirmado){
-	      				   System.out.println("Premio Consumido");
-	      				  Basedatos.loadHSQLDB(); 
-	        	          Basedatos.connectDB(); 
-	        	          Basedatos.createStatement();
-	        	          int IDBI=Integer.parseInt(IDclientePantalla);
-	    Basedatos.ActualizarTablaConsumoDesayunos(IDBI,Formulario.FechaEntradaMysql,Formulario.restarpuntos_consumirpremiosdesayuno,texto_PremiosD.getText());
-	        	          Basedatos.ConsumirPremiosDesayuno(IDBI);
-	        	          Basedatos.ConsultaclientesPantallaIDclienteDesayunos(IDBI);
-	        	          String puntosconsumidos=String.valueOf(Formulario.restarpuntos_consumirpremiosdesayuno);
-	        	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDBI ,"Desayuno","Consumidos",puntosconsumidos);
-	        	          InsertarDatosPantallaDesayuno();
-	    	              texto_Incremento.setText("0");
-	    	              Basedatos.closeHSQLDB();
-	    	              TipoUltimaOperacionPremioConsumido="PremioConsumidoDesayunoAnulado";
-	    	      	      UltimaOperacionPremioConsumido="DesayunoConsumidoAnulado";
-	    	      	      TipoUltimaOperacion="";
-	    	      	      UltimaOperacion="";
-	      				}else{
-	      				   System.out.println("vale... no borro nada...");
-	      			 }
-	      	   }
-	      	}
-	      	 }
-	      });
+	    
 	     CONSUMIRPREMIOSIMPORTE.addActionListener(new ActionListener(){
 	      	   public void actionPerformed(ActionEvent e){
 	      		  int saldototalImporte=Integer.parseInt(texto_SaldoActualI.getText());
@@ -873,7 +572,7 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 	        	          Basedatos.connectDB(); 
 	        	          Basedatos.createStatement();
 	        	          int IDBI=Integer.parseInt(IDclientePantalla);
-	        	          Basedatos.ActualizarTablaConsumoDesayunos(IDBI,Formulario.FechaEntradaMysql,Formulario.restar_puntos_consumirpremiosimporte,texto_PremiosI.getText());
+	        	         
 	        	          Basedatos.ConsumirPremiosImporte(IDBI);
 	        	          Basedatos.ConsultaclientesPantallaIDclienteImportes(IDBI);
 	        	          String puntosconsumidos=String.valueOf(Formulario.restar_puntos_consumirpremiosimporte);
@@ -917,27 +616,22 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 		  IdCliente.setText("");
 		  Nombre.setVisible(false);
 		  Apellido1.setVisible(false);
-		  SaldoMenu.setVisible(false);
+		
 		  SaldoImporte.setVisible(false);
-		  SaldoDesayuno.setVisible(false);
-		  PremioMenu.setVisible(false);
+		
+		
 		  PremioImporte.setVisible(false);
-		  PremioDesayuno.setVisible(false);
-		  CONSUMIRPREMIOSMENU.setVisible(false);
-		  CONSUMIRPREMIOSDESAYUNO.setVisible(false);
+		
 		  CONSUMIRPREMIOSIMPORTE.setVisible(false);
 		  Nombre.setVisible(false);
 		  Apellido1.setVisible(false);
-		      SeleccionTipo.clearSelection();
-		      SeleccionPuntos.clearSelection();
+		 
 		     texto_Incremento.setText("");
 	      texto_Factura_Ticket.setText("");
          texto_SaldoActualI.setText("");
-	     texto_SaldoActualC.setText("");
-	     texto_SaldoActualD.setText("");
+	 
 	     texto_PremiosI.setText("");
-	     texto_PremiosC.setText("");
-	     texto_PremiosD.setText("");
+	   
 	     DesactivarTecladoSeleccion();
 	     detectadoPuertoserie=true;
 	     detectadoCodigoBarras=true;
@@ -1008,13 +702,9 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 			menuFormulario1.setEnabled(false);
 			menuFormulario1.setIcon(IConsulta);
 			JMenuItem elementoConsultasClientes = new JMenuItem("Tabla Clientes");
-			JMenuItem elementoConsultasDesayunos = new JMenuItem("Tabla Desayunos");
-			JMenuItem elementoConsultasMenus = new JMenuItem("Tabla Menus");
 			JMenuItem elementoConsultasImportes = new JMenuItem("Tabla Importes");
 			JMenuItem elementoListadoGeneral=new JMenuItem("Tabla Diaria");
 			menuFormulario1.add(elementoConsultasClientes);
-			menuFormulario1.add(elementoConsultasDesayunos);
-			menuFormulario1.add(elementoConsultasMenus);
 			menuFormulario1.add(elementoConsultasImportes);
 			menuFormulario1.add(elementoListadoGeneral);
 			class TablaClientes implements ActionListener{
@@ -1022,16 +712,8 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 					new ConsultasTablas();
 				}
 		    }
-			class TablaDesayunos implements ActionListener{
-				public void actionPerformed(ActionEvent evento){
-					new ConsultasDesayunos();
-				}
-		    }
-			class TablaMenus implements ActionListener{
-				public void actionPerformed(ActionEvent evento){
-					new ConsultasMenus();
-				}
-		    }
+			
+			
 			class TablaImportes implements ActionListener{
 				public void actionPerformed(ActionEvent evento){
 					new ConsultasImportes();
@@ -1043,9 +725,7 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 				}
 		    }
 			elementoConsultasClientes.addActionListener(new TablaClientes());
-			elementoConsultasDesayunos.addActionListener(new TablaDesayunos());
-			elementoConsultasMenus.addActionListener(new TablaMenus());
-			elementoConsultasImportes.addActionListener(new TablaImportes());
+	        elementoConsultasImportes.addActionListener(new TablaImportes());
 			elementoListadoGeneral.addActionListener(new TablaDiaria());
 	   }
 	
@@ -1063,47 +743,18 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 			  Nombre.setText(NombreCliente);
 			  Apellido1.setVisible(true);
 			  Apellido1.setText(Apellido1Cliente);
-			  SaldoMenu.setVisible(false);
+		
 			  SaldoImporte.setVisible(false);
-			  SaldoDesayuno.setVisible(false);
-			  PremioMenu.setVisible(false);
+			 
 			  PremioImporte.setVisible(false);
-			  PremioDesayuno.setVisible(false);
-			  CONSUMIRPREMIOSMENU.setVisible(false);
-			  CONSUMIRPREMIOSDESAYUNO.setVisible(false);
+			
 			  CONSUMIRPREMIOSIMPORTE.setVisible(false);
 			  
 			}	
 	   
-	   private void InsertarDatosPantallaMenu(){
-			  IdCliente.setVisible(true);
-			  IdCliente.setText("ID CLIENTE: "+ IDclientePantalla);
-			  Nombre.setVisible(true);
-			  Nombre.setText(NombreCliente);
-			  Apellido1.setVisible(true);
-			  Apellido1.setText(Apellido1Cliente);
-			  SaldoMenu.setVisible(true);
-			  SaldoMenu.setText("SALDO TOTAL MENU: "+ texto_SaldoActualC.getText());
-			  PremioMenu.setVisible(true);
-			  PremioMenu.setText("PREMIOS ACTUALES: "+ texto_PremiosC.getText());
-			  CONSUMIRPREMIOSMENU.setVisible(true);
-			 
-			}
+	
 	   
-	   private void InsertarDatosPantallaDesayuno(){
-			  IdCliente.setVisible(true);
-			  IdCliente.setText("ID CLIENTE: "+ IDclientePantalla);
-			  Nombre.setVisible(true);
-			  Nombre.setText(NombreCliente);
-			  Apellido1.setVisible(true);
-			  Apellido1.setText(Apellido1Cliente);
-			  SaldoDesayuno.setVisible(true);
-			  SaldoDesayuno.setText("SALDO TOTAL DESAYUNO: "+ texto_SaldoActualD.getText());
-			  PremioDesayuno.setVisible(true);
-			  PremioDesayuno.setText("PREMIOS ACTUALES: "+ texto_PremiosD.getText());
-			  CONSUMIRPREMIOSDESAYUNO.setVisible(true);
-			  
-			}
+	 
 	   private void InsertarDatosPantallaImportes(){
 			  IdCliente.setVisible(true);
 			  IdCliente.setText("ID CLIENTE: "+ IDclientePantalla);
@@ -1181,8 +832,7 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
          Basedatos.createStatement(); 
          Basedatos.createTablesFidelizacion();
          Basedatos.createTables();
-         Basedatos.createTablesComida();
-         Basedatos.createTablesDesayunos();
+         Basedatos.createTablesCatalogo();;
          Basedatos.createTablesImporte();
          Basedatos.createTablesDiaria();
          Basedatos.createTablesConsumo();
@@ -1204,14 +854,7 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
        private static void ActivarTecladoSeleccion(){
     	   
 		     Venta.setEnabled(true);
-			 Menu.setEnabled(true);
-			 Desayunos.setEnabled(true);
-			 uno.setEnabled(true);
-			 dos.setEnabled(true);
-			 tres.setEnabled(true);
-			 cuatro.setEnabled(true);
-			 cinco.setEnabled(true);
-			 seis.setEnabled(true);
+			
 			 Aceptar.setEnabled(false);
 		    texto_Incremento.setEnabled(true);
 			texto_Factura_Ticket.setEnabled(false);
@@ -1223,14 +866,7 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
        static void DesactivarTecladoSeleccionImportes(){
     	   
 		     Venta.setEnabled(false);
-			 Menu.setEnabled(false);
-			 Desayunos.setEnabled(false);
-			 uno.setEnabled(false);
-			 dos.setEnabled(false);
-			 tres.setEnabled(false);
-			 cuatro.setEnabled(false);
-			 cinco.setEnabled(false);
-			 seis.setEnabled(false);
+			
 			 Aceptar.setEnabled(true);
 		    texto_Incremento.setEnabled(true);
 			texto_Factura_Ticket.setEnabled(true);
@@ -1240,14 +876,6 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
        private static void DesactivarTecladoSeleccion(){
     	   
 		     Venta.setEnabled(false);
-			 Menu.setEnabled(false);
-			 Desayunos.setEnabled(false);
-			 uno.setEnabled(false);
-			 dos.setEnabled(false);
-			 tres.setEnabled(false);
-			 cuatro.setEnabled(false);
-			 cinco.setEnabled(false);
-			 seis.setEnabled(false);
 			 Aceptar.setEnabled(false);
 		    texto_Incremento.setEnabled(false);
 			texto_Factura_Ticket.setEnabled(false);
@@ -1309,12 +937,11 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
                   }else{
                  
                   int IDBI=Integer.parseInt(IDclientePantalla);
-                  Basedatos.ActualizarPremiosDesayuno(IDBI);
+                  
                   Basedatos.ActualizarPremiosImporte(IDBI);
-                  Basedatos.ActualizarPremiosMenu(IDBI);
-                  Basedatos.ConsultaPuntosPantallaDesayunos(IDBI);
+                 
                   Basedatos.ConsultaPuntosPantallaImportes(IDBI);
-                  Basedatos.ConsultaPuntosPantallaMenus(IDBI);
+                 
                   ActivarTecladoSeleccion();
                   texto_Incremento.setText("0");
                   Basedatos.closeHSQLDB();
@@ -1336,287 +963,12 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 		   DetectarPuertoSerie();
 		
 		   
-		if(Menu.isSelected()){
-			InsertarDatosPantalla1();
-			InsertarDatosPantallaMenu();
-			ActivarTecladoSeleccion();
-			texto_Incremento.setText("0");
-  			if(uno.isSelected()){
-  			  int puntosporM1=1*puntosporMenu;
-    	      String unoP=String.valueOf(puntosporM1);
-  			  texto_Incremento.setText(unoP);
-  			  SeleccionTipo.clearSelection();
-  			  SeleccionPuntos.clearSelection();
-  			  Basedatos.loadHSQLDB(); 
-  	          Basedatos.connectDB(); 
-  	          Basedatos.createStatement();
-  	          int IDS=Integer.parseInt(IDclientePantalla);
-  	          Basedatos.ActualizarSaldoPuntosMenu(unoP, IDS);
-  	          Basedatos.ActualizarPremiosMenu(IDS);
-  	          Basedatos.ConsultaPuntosPantallaMenus(IDS);
-  	          InsertarDatosPantallaMenu();
-  	          Basedatos.ActualizarTabladiariaMenus(IDS,Formulario.FechaEntradaMysql,unoP);
-  	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"MENU","Obtenidos",unoP);
-  	          TipoUltimaOperacion="Menu";
-  	          UltimaOperacion=unoP;
-  	          Basedatos.closeHSQLDB();
-  			}
-  			if(dos.isSelected()){
-  				
-  				InsertarDatosPantalla1();
-  				InsertarDatosPantallaMenu();
-  				  int puntosporM2=2*puntosporMenu;
-     	          String dosP=String.valueOf(puntosporM2);
-    			  texto_Incremento.setText(dosP);
-    			  SeleccionTipo.clearSelection();
-    			  SeleccionPuntos.clearSelection();
-    			  Basedatos.loadHSQLDB(); 
-    	          Basedatos.connectDB(); 
-    	          Basedatos.createStatement();
-    	          int IDS=Integer.parseInt(IDclientePantalla);
-    	          Basedatos.ActualizarSaldoPuntosMenu(dosP, IDS);
-    	          Basedatos.ActualizarPremiosMenu(IDS);
-    	          Basedatos.ConsultaPuntosPantallaMenus(IDS);
-      	          InsertarDatosPantallaMenu();
-      	          Basedatos.ActualizarTabladiariaMenus(IDS,Formulario.FechaEntradaMysql,dosP);
-      	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"MENU","Obtenidos",dosP);
-      	          Basedatos.closeHSQLDB();
-      	          TipoUltimaOperacion="Menu";
-      	          UltimaOperacion=dosP;
-    			}
+	
+    	    
+    	   
   			
-  			if(tres.isSelected()){
-  				InsertarDatosPantalla1();
-  				InsertarDatosPantallaMenu();
-  				  int puntosporM3=3*puntosporMenu;
-    	          String tresP=String.valueOf(puntosporM3);
-    			  texto_Incremento.setText(tresP);
-    			  SeleccionTipo.clearSelection();
-    			  SeleccionPuntos.clearSelection();
-    			  Basedatos.loadHSQLDB(); 
-    	          Basedatos.connectDB(); 
-    	          Basedatos.createStatement();
-    	          int IDS=Integer.parseInt(IDclientePantalla);
-    	          Basedatos.ActualizarSaldoPuntosMenu(tresP, IDS);
-    	          Basedatos.ActualizarPremiosMenu(IDS);
-    	          Basedatos.ConsultaPuntosPantallaMenus(IDS);
-    	          InsertarDatosPantallaMenu();
-    	          Basedatos.ActualizarTabladiariaMenus(IDS,Formulario.FechaEntradaMysql,tresP);
-    	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"MENU","Obtenidos",tresP);
-    	          Basedatos.closeHSQLDB();
-    	          TipoUltimaOperacion="Menu";
-    	          UltimaOperacion=tresP;
-    			}
-  			if(cuatro.isSelected()){
-  				  InsertarDatosPantalla1();
-  				  InsertarDatosPantallaMenu();
-  				  int puntosporM4=4*puntosporMenu;
-    	          String cuatroP=String.valueOf(puntosporM4);
-    			  texto_Incremento.setText(cuatroP);
-    			  SeleccionTipo.clearSelection();
-    			  SeleccionPuntos.clearSelection();
-    			  Basedatos.loadHSQLDB(); 
-    	          Basedatos.connectDB(); 
-    	          Basedatos.createStatement();
-    	          int IDS=Integer.parseInt(IDclientePantalla);
-    	          Basedatos.ActualizarSaldoPuntosMenu(cuatroP, IDS);
-    	          Basedatos.ActualizarPremiosMenu(IDS);
-    	          Basedatos.ConsultaPuntosPantallaMenus(IDS);
-    	          InsertarDatosPantallaMenu();
-    	          Basedatos.ActualizarTabladiariaMenus(IDS,Formulario.FechaEntradaMysql,cuatroP);
-    	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"MENU","Obtenidos",cuatroP);
-    	          Basedatos.closeHSQLDB();
-    	          TipoUltimaOperacion="Menu";
-    	          UltimaOperacion=cuatroP;
-    			}
-  		
-  			if(cinco.isSelected()){
-  				  InsertarDatosPantalla1();
-  				  InsertarDatosPantallaMenu();
-  				  int puntosporM5=5*puntosporMenu;
-    	          String cincoP=String.valueOf(puntosporM5);
-    			  texto_Incremento.setText(cincoP);
-    			  SeleccionTipo.clearSelection();
-    			  SeleccionPuntos.clearSelection();
-    			  Basedatos.loadHSQLDB(); 
-    	          Basedatos.connectDB(); 
-    	          Basedatos.createStatement();
-    	          int IDS=Integer.parseInt(IDclientePantalla);
-    	          Basedatos.ActualizarSaldoPuntosMenu(cincoP, IDS);
-    	          Basedatos.ActualizarPremiosMenu(IDS);
-    	          Basedatos.ConsultaPuntosPantallaMenus(IDS);
-    	          InsertarDatosPantallaMenu();
-    	          Basedatos.ActualizarTabladiariaMenus(IDS,Formulario.FechaEntradaMysql,cincoP);
-    	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"MENU","Obtenidos",cincoP);
-    	          Basedatos.closeHSQLDB();
-    	          TipoUltimaOperacion="Menu";
-    	          UltimaOperacion=cincoP;
-    			}
-  			if(seis.isSelected()){
-  				  InsertarDatosPantalla1();
-  				  InsertarDatosPantallaMenu();
-  				  int puntosporM6=6*puntosporMenu;
-    	          String seisP=String.valueOf(puntosporM6);
-    			  texto_Incremento.setText(seisP);
-    			  SeleccionTipo.clearSelection();
-    			  SeleccionPuntos.clearSelection();
-    			  Basedatos.loadHSQLDB(); 
-    	          Basedatos.connectDB(); 
-    	          Basedatos.createStatement();
-    	          int IDS=Integer.parseInt(IDclientePantalla);
-    	          Basedatos.ActualizarSaldoPuntosMenu(seisP, IDS);
-    	          Basedatos.ActualizarPremiosMenu(IDS);
-    	          Basedatos.ConsultaPuntosPantallaMenus(IDS);
-    	          InsertarDatosPantallaMenu();
-    	          Basedatos.ActualizarTabladiariaMenus(IDS,Formulario.FechaEntradaMysql,seisP);
-    	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"MENU","Obtenidos",seisP);
-    	          Basedatos.closeHSQLDB();
-    	          TipoUltimaOperacion="Menu";
-    	          UltimaOperacion=seisP;
-    			}
-  			}
-  			
-  			 if(Desayunos.isSelected()){
-  				
-  				InsertarDatosPantalla1();
-  				InsertarDatosPantallaDesayuno();
-  				ActivarTecladoSeleccion();
-  				texto_Incremento.setText("0");
-  				if(uno.isSelected()){
-  				  int puntosporM1=1*puntosporDesayuno;
-  	    	      String unoP=String.valueOf(puntosporM1);
-  	  			  texto_Incremento.setText(unoP);
-  	  			  SeleccionTipo.clearSelection();
-  	  			  SeleccionPuntos.clearSelection();
-  	  			  Basedatos.loadHSQLDB(); 
-  	  	          Basedatos.connectDB(); 
-  	  	          Basedatos.createStatement();
-  	  	          int IDS=Integer.parseInt(IDclientePantalla);
-  	  	          Basedatos.ActualizarSaldoPuntosDesayunos(unoP, IDS);
-  	  	          Basedatos.ActualizarPremiosDesayuno(IDS);
-  	  	          Basedatos.ConsultaPuntosPantallaDesayunos(IDS);
-  	  	          InsertarDatosPantallaDesayuno();
-  	  	          Basedatos.ActualizarTabladiariaDesayunos(IDS,Formulario.FechaEntradaMysql, unoP);
-  	  	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"DESAYUNO","Obtenidos",unoP);
-  	  	          Basedatos.closeHSQLDB();
-  	  	          TipoUltimaOperacion="Desayuno";
-  	  	          UltimaOperacion=unoP;
-  	  			}
-  	  			if(dos.isSelected()){
-  	  			      InsertarDatosPantalla1();
-  	  			      InsertarDatosPantallaDesayuno();
-  	  			      int puntosporM2=2*puntosporDesayuno;
-    	               String dosP=String.valueOf(puntosporM2);
-  	    			  texto_Incremento.setText(dosP);
-  	    			  SeleccionTipo.clearSelection();
-  	    			  SeleccionPuntos.clearSelection();
-  	    			  Basedatos.loadHSQLDB(); 
-  	    	          Basedatos.connectDB(); 
-  	    	          Basedatos.createStatement();
-  	    	          int IDS=Integer.parseInt(IDclientePantalla);
-  	    	          Basedatos.ActualizarSaldoPuntosDesayunos(dosP, IDS);
-  	    	          Basedatos.ActualizarPremiosDesayuno(IDS);
-  	    	          Basedatos.ConsultaPuntosPantallaDesayunos(IDS);
-  	    	          InsertarDatosPantallaDesayuno();
-  	    	          Basedatos.ActualizarTabladiariaDesayunos(IDS,Formulario.FechaEntradaMysql, dosP);
-  	    	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"DESAYUNO","Obtenidos",dosP);
-  	    	          Basedatos.closeHSQLDB();
-  	    	          TipoUltimaOperacion="Desayuno";
-  	    	          UltimaOperacion=dosP;
-  	    			}
   	  			
-  	  			if(tres.isSelected()){
-  	  			      InsertarDatosPantalla1();
-  	  			      InsertarDatosPantallaDesayuno();
-  	  			      int puntosporM3=3*puntosporDesayuno;
-    	              String tresP=String.valueOf(puntosporM3);
-  	    			  texto_Incremento.setText(tresP);
-  	    			  SeleccionTipo.clearSelection();
-  	    			  SeleccionPuntos.clearSelection();
-  	    			  Basedatos.loadHSQLDB(); 
-  	    	          Basedatos.connectDB(); 
-  	    	          Basedatos.createStatement();
-  	    	          int IDS=Integer.parseInt(IDclientePantalla);
-  	    	          Basedatos.ActualizarSaldoPuntosDesayunos(tresP, IDS);
-  	    	          Basedatos.ActualizarPremiosDesayuno(IDS);
-  	    	          Basedatos.ConsultaPuntosPantallaDesayunos(IDS);
-  	  	              InsertarDatosPantallaDesayuno();
-  	  	              Basedatos.ActualizarTabladiariaDesayunos(IDS,Formulario.FechaEntradaMysql, tresP);
-  	  	              Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"DESAYUNO","Obtenidos",tresP);
-  	    	          Basedatos.closeHSQLDB();
-  	    	          TipoUltimaOperacion="Desayuno";
-  	    	          UltimaOperacion=tresP;
-  	    			}
-  	  			if(cuatro.isSelected()){
-  	  			      InsertarDatosPantalla1();
-  	  			      InsertarDatosPantallaDesayuno();
-  	  			      int puntosporM4=4*puntosporDesayuno;
-   	                  String cuatroP=String.valueOf(puntosporM4);
-  	    			  texto_Incremento.setText(cuatroP);
-  	    			  SeleccionTipo.clearSelection();
-  	    			  SeleccionPuntos.clearSelection();
-  	    			  Basedatos.loadHSQLDB(); 
-  	    	          Basedatos.connectDB(); 
-  	    	          Basedatos.createStatement();
-  	    	          int IDS=Integer.parseInt(IDclientePantalla);
-  	    	          Basedatos.ActualizarSaldoPuntosDesayunos(cuatroP, IDS);
-  	    	          Basedatos.ActualizarPremiosDesayuno(IDS);
-  	    	          Basedatos.ConsultaPuntosPantallaDesayunos(IDS);
-  	    	          InsertarDatosPantallaDesayuno();
-  	    	          Basedatos.ActualizarTabladiariaDesayunos(IDS,Formulario.FechaEntradaMysql, cuatroP);
-  	    	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"DESAYUNO","Obtenidos",cuatroP);
-  	  	              Basedatos.closeHSQLDB();
-  	  	              TipoUltimaOperacion="Desayuno";
-  	  	              UltimaOperacion=cuatroP;
-  	    			}
-  	  		     
-  	  			if(cinco.isSelected()){
-  	  			      InsertarDatosPantalla1();
-  	  			      InsertarDatosPantallaDesayuno();
-  	  			      int puntosporM5=5*puntosporDesayuno;
-   	                  String cincoP=String.valueOf(puntosporM5);
-  	    			  texto_Incremento.setText(cincoP);
-  	    			  SeleccionTipo.clearSelection();
-  	    			  SeleccionPuntos.clearSelection();
-  	    			  Basedatos.loadHSQLDB(); 
-  	    	          Basedatos.connectDB(); 
-  	    	          Basedatos.createStatement();
-  	    	          int IDS=Integer.parseInt(IDclientePantalla);
-  	    	          Basedatos.ActualizarSaldoPuntosDesayunos(cincoP, IDS);
-  	    	          Basedatos.ActualizarPremiosDesayuno(IDS);
-  	    	          Basedatos.ConsultaPuntosPantallaDesayunos(IDS);
-  	    	          InsertarDatosPantallaDesayuno();
-  	    	          Basedatos.ActualizarTabladiariaDesayunos(IDS,Formulario.FechaEntradaMysql, cincoP);
-  	    	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"DESAYUNO","Obtenidos",cincoP);
-  	    	          Basedatos.closeHSQLDB();
-  	    	          TipoUltimaOperacion="Desayuno";
-  	    	          UltimaOperacion=cincoP;
-  	    			}
-  	  			if(seis.isSelected()){
-  	  			      InsertarDatosPantalla1();
-  	  			      InsertarDatosPantallaDesayuno();
-  	  			      int puntosporM6=6*puntosporDesayuno;
-    	              String seisP=String.valueOf(puntosporM6);
-  	    			  texto_Incremento.setText(seisP);
-  	    			  SeleccionTipo.clearSelection();
-  	    			  SeleccionPuntos.clearSelection();
-  	    			  Basedatos.loadHSQLDB(); 
-  	    	          Basedatos.connectDB(); 
-  	    	          Basedatos.createStatement();
-  	    	          int IDS=Integer.parseInt(IDclientePantalla);
-  	    	          Basedatos.ActualizarSaldoPuntosDesayunos(seisP, IDS);
-  	    	          Basedatos.ActualizarPremiosDesayuno(IDS);
-  	    	          Basedatos.ConsultaPuntosPantallaDesayunos(IDS);
-  	    	          InsertarDatosPantallaDesayuno();
-  	    	          Basedatos.ActualizarTabladiariaDesayunos(IDS,Formulario.FechaEntradaMysql, seisP);
-  	    	          Basedatos.inserRegistroDiario(Formulario.FechaEntradaMysql,AreaCodigo.getText(),IDS ,"DESAYUNO","Obtenidos",seisP);
-  	  	              Basedatos.closeHSQLDB();
-  	  	              TipoUltimaOperacion="Desayuno";
-  	  	              UltimaOperacion=seisP;
-  	    			}
-  				 
-  			 }
-  			
+  	    	     
     
     
 
@@ -1638,8 +990,7 @@ public class Formulario extends JFrame implements ActionListener, ChangeListener
 				texto_Incremento.setText(SpuntosImporte1);
 				
 		      } 
-		      SeleccionTipo.clearSelection();
-    		  SeleccionPuntos.clearSelection();
+		     
 			  Basedatos.loadHSQLDB(); 
 	          Basedatos.connectDB(); 
 	          Basedatos.createStatement();

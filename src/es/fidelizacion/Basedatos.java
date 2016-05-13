@@ -23,12 +23,9 @@ public class Basedatos {
 	    static String     sqluse="USE fidelizacion;";
 	    static String     sqlpuntos=null;
 	    static String     sqlpremios=null;
-	    static String     sqlDesayunos = null;
-	    static String     sqlComida = null;
 	    static String     sqlImporte= null;
 	    static String     sqlFidelizacion=null;
-	    static String     sqlregalosdesayunos=null;
-	    static String     sqlregalosmenus=null;
+	   
 	    static String     sqlregalosimportes=null;
 	   
 	    public static void loadHSQLDB() 
@@ -55,7 +52,7 @@ public class Basedatos {
 	            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/?","root","alejandro");
 	            st=con.createStatement(); 
 
-	            int c=st.executeUpdate("CREATE DATABASE fidelizacion");
+	            int c=st.executeUpdate("CREATE DATABASE fidelizacion2.0");
 	            st.executeUpdate(sqluse);
 	            System.out.println("* Creating mysql connection..."); 
 	        } 
@@ -99,17 +96,9 @@ public class Basedatos {
 	                                                "FECHA_ALTA DATE,"+
 	                                                "email      VARCHAR(80)," + 
 	                                                "TELEFONO     VARCHAR(50)," +
-	                                                "CANTIDAD_DESAYUNOS INTEGER,"+
-	                                                "CANTIDAD_MENUS INTEGER,"+
 	                                                "CANTIDAD_IMPORTES INTEGER,"+
-	                                                "PUNTOS_ACTUALES_DESAYUNOS INTEGER,"+
-	                                                "PUNTOS_ACTUALES_MENUS INTEGER,"+
 	                                                "PUNTOS_ACTUALES_IMPORTES INTEGER,"+
-	                                                "PUNTOS_RCONSUMIDOS_DESAYUNOS INTEGER,"+
-	                                                "PUNTOS_RCONSUMIDOS_MENUS INTEGER,"+
 	                                                "PUNTOS_RCONSUMIDOS_IMPORTES INTEGER,"+
-	                                                "REGALOS_ACUMULADOSDESAYUNOS VARCHAR(100),"+
-	                                                "REGALOS_ACUMULADOSMENUS VARCHAR(100),"+
 	                                                "REGALOS_ACUMULADOSIMPORTES VARCHAR(100),"+
 	                                                " primary key (ID))";   
 	                st.executeUpdate(sql);   
@@ -134,8 +123,6 @@ public class Basedatos {
 	        	st.executeUpdate(sqluse);
 	            sql = "CREATE TABLE Tabladiaria" +  "(ID INTEGER ," + 
 	            		                            "FECHA_DIARIA DATE,"+
-	                                                "DESAYUNOS INTEGER,"+
-	                                                "MENUS INTEGER,"+
 	                                                "IMPORTES INTEGER)";
 	                                              
 	                                                  
@@ -214,10 +201,6 @@ public class Basedatos {
 	    	        	st.executeUpdate(sqluse);
 	    	            sql = "CREATE TABLE TablaConsumoDiario" +  "(ID INTEGER ," +
 	    	                                                       "FECHA_DIARIA DATE,"+
-	    	                                                       "CONSUMIDOSDESAYUNOS INTEGER,"+
-	    	                                                       "PREMIOSDESAYUNOS  VARCHAR(100),"+
-	    	            		                                   "CONSUMIDOSMENUS INTEGER,"+
-	    	            		                                   "PREMIOSMENUS VARCHAR(100),"+
 	    	            		                                   "CONSUMIDOSIMPORTES INTEGER,"+
 	    	            		                                   "PREMIOSIMPORTES VARCHAR(100))";
 	    	                                              
@@ -237,8 +220,6 @@ public class Basedatos {
 	    	        	st.executeUpdate(sqluse);
 	    	            sql = "CREATE TABLE TablaRegalosPendientes" +  "(ID INTEGER ," +
 	    	                                                       "FECHA_DIARIA DATE,"+
-	    	                                                       "PREMIOSDESAYUNOS  VARCHAR(100),"+
-	    	            		                                   "PREMIOSMENUS VARCHAR(100),"+
 	    	            		                                   "PREMIOSIMPORTES VARCHAR(100))";
 	    	                                              
 	    	            st.executeUpdate(sql);   
@@ -251,50 +232,8 @@ public class Basedatos {
 	    }
 	
 	    
-	    public static void createTablesDesayunos() 
-	    { 
-	        try 
-	        {   // Create tables 
-	        	
-	           
-	        	st.executeUpdate(sqluse);
-	            sqlDesayunos = "CREATE TABLE PuntosDesayunos" +  "(id INTEGER,"+
-	            		"FECHA_ALTA DATE,"+
-	                    "PUNTOS_ACTUALES INTEGER,"+
-	                    "REGALOS_ACUMULADOS VARCHAR(100),"+"REGALOS_CONSUMIDOS INTEGER)";
-	            
-	           st.executeUpdate(sqlDesayunos);
-	           
-	          
-	          
-	         }  
-	        catch (Exception e) 
-	        {   
-	            System.err.println("Warning: CREATE TABLE: " + e.getMessage());    
-	        } 
-	    } 
-	    
-	    public static void createTablesComida() 
-	    { 
-	        try 
-	        {   // Create tables 
-	        	  st.executeUpdate(sqluse);
-	        	  sqlComida = "CREATE TABLE PuntosComida" +  "(id INTEGER,"+
-	        			      "FECHA_ALTA DATE,"+
-		                      "PUNTOS_ACTUALES INTEGER,"+
-		                      "REGALOS_ACUMULADOS VARCHAR(100),"+"REGALOS_CONSUMIDOS INTEGER)";
-		           
-		          st.executeUpdate(sqlComida);
-	           
-	           
-	           
-	          
-	         }  
-	        catch (Exception e) 
-	        {   
-	            System.err.println("Warning: CREATE TABLE: " + e.getMessage());    
-	        } 
-	    } 
+	 
+	  
 	      
 	    public static void createTablesImporte() 
 	    { 
@@ -320,13 +259,25 @@ public class Basedatos {
 	        try 
 	        {   // Create tables 
 	        	  st.executeUpdate(sqluse);
-	        	  sqlFidelizacion = "CREATE TABLE PuntosFidelizacion" +  "(INCREMENTODESAYUNOS INTEGER,"+
-		                      "PREMIOSDESAYUNOS VARCHAR(100),"+ "INCREMENTOMENU INTEGER," +
-		                      "PREMIOSMENU VARCHAR(100)," + "INCREMENTOIMPORTE INTEGER,"
-		                      + "PREMIOSIMPORTE VARCHAR(100),"+"PUNTOSDESAYUNO INTEGER,"+"PUNTOSMENU INTEGER,"+"PUNTOSIMPORTE INTEGER)";
-	        	  
-		          
-		           st.executeUpdate(sqlFidelizacion);
+	        	  sqlFidelizacion = "CREATE TABLE PuntosFidelizacion" +  "(INCREMENTOIMPORTE INTEGER,"
+		                      + "PREMIOSIMPORTE VARCHAR(100),"+"PUNTOSIMPORTE INTEGER)";
+	        	      st.executeUpdate(sqlFidelizacion);
+	           
+	         }  
+	        catch (Exception e) 
+	        {   
+	            System.err.println("Warning: CREATE TABLE: " + e.getMessage());    
+	        } 
+	    }
+	    
+	    public static void createTablesCatalogo() 
+	    { 
+	        try 
+	        {   // Create tables 
+	        	  st.executeUpdate(sqluse);
+	        	  sqlFidelizacion = "CREATE TABLE CatalogoFidelizacion" +  "(Codigo INTEGER,"
+		                      + "NOMBRE VARCHAR(100),"+"Coste INTEGER)";
+	        	      st.executeUpdate(sqlFidelizacion);
 	           
 	         }  
 	        catch (Exception e) 
@@ -342,9 +293,7 @@ public class Basedatos {
 	        {   // Restore the database  
 	        	st.executeUpdate(sqluse);
 	            st.executeUpdate("DROP table clientes;");
-	            st.executeUpdate("DELETE FROM puntoscomida;");
 	            st.executeUpdate("DELETE FROM puntosimporte;"); 
-	            st.executeUpdate("DELETE FROM puntosdesayunos;");
 	            st.executeUpdate("DELETE FROM registrodiario;"); 
 	            st.executeUpdate("DELETE FROM tablaconsumodiario;");
 	            st.executeUpdate("DELETE FROM tabladiaria;");
@@ -489,12 +438,10 @@ public class Basedatos {
 	            
 	            while(res.next()){
 	            	int IDeliminacion=res.getInt("ID");
-	 	            EliminarIDDesayuno(IDeliminacion);
-	 	            EliminarIDMenu(IDeliminacion);
 	 	            EliminarIDImporte(IDeliminacion);
 	 	            EliminarIDTablaDiaria(IDeliminacion);
 	 	            EliminarIDTablaConsumoDiario(IDeliminacion);
-	 	            EliminarIDTablaRegalosPendientes(IDeliminacion);
+	 	            
 	 	          
 	        	  }
 	            
@@ -599,73 +546,7 @@ public class Basedatos {
 	        } 
 	    }
 	    
-	    public static void ConsultaclientesPantallaIDclienteMenu(int ID) //refresca la pantalla con los datos actuales 
-	    { 
-	    	
-	        try 
-	        {  
-	        	 st.executeUpdate(sqluse);
-	            // Mostramos por pantalla los clientes seleccionados por el ID 
-	        	 sql = "SELECT * FROM puntoscomida WHERE ID="+ID;
-	            res = st.executeQuery(sql);
-	          
-	           
-	            
-	            while(res.next()){
-	            	
-	 	            int ID1=res.getInt("ID");
-	 	            int PUNTOS_ACTUALES=res.getInt("PUNTOS_ACTUALES");
-	 	            String REGALOS_ACUMULADOS=res.getString("REGALOS_ACUMULADOS");
-	 	            
-	 	           
-		 	       Formulario.texto_PremiosC.setText(REGALOS_ACUMULADOS);
-		 	       String IDS=String.valueOf(ID1);
-		 	       Formulario.IDclientePantalla=IDS;
-		 	       String PuntosT=String.valueOf(PUNTOS_ACTUALES);
-		 	       Formulario.texto_SaldoActualC.setText(PuntosT);
-	            }
-	 	        // Free memory 
-	            res.close();  
-	        } 
-	        catch (Exception e) 
-	        {   
-	            System.err.println("Warning: SELECT JOIN puntoscomida: " + e.getMessage());    
-	        } 
-	    }
-	    public static void ConsultaclientesPantallaIDclienteDesayunos(int ID) //refresca la pantalla con los datos actuales 
-	    { 
-	    	
-	        try 
-	        {  
-	        	 st.executeUpdate(sqluse);
-	            // Mostramos por pantalla los clientes seleccionados por el ID 
-	        	 sql = "SELECT * FROM puntosdesayunos WHERE ID="+ID;
-	            res = st.executeQuery(sql);
-	          
-	           
-	            
-	            while(res.next()){
-	            	
-	 	            int ID1=res.getInt("ID");
-	 	            int PUNTOS_ACTUALES=res.getInt("PUNTOS_ACTUALES");
-	 	            String REGALOS_ACUMULADOS=res.getString("REGALOS_ACUMULADOS");
-	 	            
-	 	           
-		 	       Formulario.texto_PremiosD.setText(REGALOS_ACUMULADOS);
-		 	       String IDS=String.valueOf(ID1);
-		 	       Formulario.IDclientePantalla=IDS;
-		 	       String PuntosT=String.valueOf(PUNTOS_ACTUALES);
-		 	       Formulario.texto_SaldoActualD.setText(PuntosT);
-	            }
-	 	        // Free memory 
-	            res.close();  
-	        } 
-	        catch (Exception e) 
-	        {   
-	            System.err.println("Warning: SELECT JOIN puntosdesayuno: " + e.getMessage());    
-	        } 
-	    }
-	    
+	
 	    public static void ConsultaclientesPantallaIDclienteImportes(int ID) //refresca la pantalla con los datos actuales 
 	    { 
 	    	
@@ -701,67 +582,11 @@ public class Basedatos {
 	    }
 	    
 	    
-	    public static void ConsultaPuntosPantallaDesayunos(int Codigo) 
-	    { 
-	    	
-	        try 
-	        {  
-	        	 st.executeUpdate(sqluse);
-	            // Mostramos por pantalla los puntos de desayunos seleccionados por el codigo 
-	        	 sql = "SELECT * FROM puntosdesayunos WHERE id="+Codigo;
-	            res = st.executeQuery(sql);
-	          
-	           
-	            
-	            while(res.next()){
-	              int PuntosA=res.getInt("PUNTOS_ACTUALES");
-	 	          String PremiosA=res.getString("REGALOS_ACUMULADOS");
-		 	       Formulario.texto_PremiosD.setText(PremiosA);
-		 	       String puntA=String.valueOf(PuntosA);
-		 	       Formulario.texto_SaldoActualD.setText(puntA);
-		 	      System.out.print("dato cliente:"+Formulario.texto_PremiosD+Formulario.texto_PremiosD);
-	 	           
-	 	          }
-	            
-	            // Free memory 
-	            res.close();  
-	        } 
-	        catch (Exception e) 
-	        {   
-	            System.err.println("Warning: SELECT JOIN clientes: " + e.getMessage());    
-	        } 
-	    }
+	  
+	       
+	   
 	    
-	    public static void ConsultaPuntosPantallaMenus(int Codigo) 
-	    { 
-	    	
-	        try 
-	        {  
-	        	 st.executeUpdate(sqluse);
-	            // Mostramos por pantalla los puntos de comida seleccionados por el codigo 
-	        	 sql = "SELECT * FROM puntoscomida WHERE id="+Codigo;
-	            res = st.executeQuery(sql);
-	          
-	           
-	            
-	            while(res.next()){
-	              int PuntosA=res.getInt("PUNTOS_ACTUALES");
-	 	          String PremiosA=res.getString("REGALOS_ACUMULADOS");
-		 	       Formulario.texto_PremiosC.setText(PremiosA);
-		 	       String puntA=String.valueOf(PuntosA);
-		 	       Formulario.texto_SaldoActualC.setText(puntA);
-		 	      
-	 	           
-	 	          }
-	            
-	            // Free memory 
-	            res.close();  
-	        } 
-	        catch (Exception e) 
-	        {   
-	            System.err.println("Warning: SELECT JOIN clientes: " + e.getMessage());    
-	        } 
-	    }
+	 
 	    
 	    public static void ConsultaPuntosPantallaImportes(int Codigo) 
 	    { 
@@ -811,21 +636,22 @@ public class Basedatos {
 		        } 
 	       }   
          
-	       public static void EliminarIDDesayuno(int ID){
+	       public static void EliminarRegistroCatalogo(String Codigo){
 		    	  try
 		    	  {
 		    		st.executeUpdate(sqluse);
-		    	    sql = "DELETE FROM puntosdesayunos WHERE ID=?";
+		    	    sql = "DELETE FROM CatalogoFidelizacion WHERE Codigo="+Codigo+";";
 		    	    psBorrar=con.prepareStatement(sql);
-		    	    psBorrar.setInt(1,ID);
-		    	    psBorrar.execute();     
+		    	    psBorrar.execute(); 
+		    	    
 			     }
 		    	
 		         catch (Exception e) 
 			        {   
-			            System.err.println("Warning: SELECT JOIN puntosdesayunos:" + e.getMessage());    
+			            System.err.println("Warning: SELECT JOIN Catalogofidelizacion: " + e.getMessage());    
 			        } 
-		       } 
+		       }   
+	         
 	       
 	       
 	       public static void EliminarIDTablaConsumoDiario(int ID){
@@ -843,21 +669,7 @@ public class Basedatos {
 			            System.err.println("Warning: SELECT JOIN tablaconsumoEliminacion:" + e.getMessage());    
 			        } 
 		       } 
-	       public static void EliminarIDTablaRegalosPendientes(int ID){
-		    	  try
-		    	  {
-		    		st.executeUpdate(sqluse);
-		    	    sql = "DELETE FROM tablaregalospendientes WHERE ID=?";
-		    	    psBorrar=con.prepareStatement(sql);
-		    	    psBorrar.setInt(1,ID);
-		    	    psBorrar.execute();     
-			     }
-		    	
-		         catch (Exception e) 
-			        {   
-			            System.err.println("Warning: SELECT JOIN tablaregalospendienteseliminacion:" + e.getMessage());    
-			        } 
-		       } 
+	   
 	       public static void EliminarIDTablaDiaria(int ID){
 		    	  try
 		    	  {
@@ -874,57 +686,10 @@ public class Basedatos {
 			        } 
 		       } 
 	       
-	        public static void EliminarUlDesayuno(int ID){
-	        	 
-	        	   try 
-	   	        {   
-	   	        	
-	   	            // Mostramos por pantalla los clientes seleccionados por el ID 
-	        	
-	        	sql =" UPDATE tablaregalospendientes  SET PREMIOSDESAYUNOS=PREMIOSDESAYUNOS"+"-" +"1"+" WHERE id="+ID;
-	   	        	st.executeUpdate(sql);
-	   	        } 
-	   	        catch (Exception e) 
-	   	        {   
-	   	            System.err.println("Warning: SELECT JOIN eliminarUltimoDesayuno: " + e.getMessage());    
-	   	        } 
-	   	    }
+	     
 	        
 	      
-	        public static void AnularDesayunoConsumido(int ID){
-	        	 
-	        	   try 
-	   	        {   
-	        		   psInsertar=con.prepareStatement("INSERT INTO tablaconsumodiario(ID,FECHA_DIARIA,CONSUMIDOSDESAYUNOS,PREMIOSDESAYUNOS) VALUES (?,?,?,?)");
-	     	           psInsertar.setInt(1,ID);
-	     	           psInsertar.setString(2,Formulario.FechaEntradaMysql);
-	     	    	   psInsertar.setInt(3,-11);
-	     	    	   psInsertar.setString(4,"DesayunoAnulado");
-	   	        	   psInsertar.executeUpdate(); 
-	   	        } 
-	   	        catch (Exception e) 
-	   	        {   
-	   	            System.err.println("Warning: SELECT JOIN anularDesayunoconsumido: " + e.getMessage());    
-	   	        } 
-	   	    }
-	        public static void AnularMenuConsumido(int ID){
-	        	 
-	        	   try 
-	   	        {   
-	        		   psInsertar=con.prepareStatement("INSERT INTO tablaconsumodiario(ID,FECHA_DIARIA,CONSUMIDOSMENUS,PREMIOSMENUS) VALUES (?,?,?,?)");
-	     	           psInsertar.setInt(1,ID);
-	     	           psInsertar.setString(2,Formulario.FechaEntradaMysql);
-	     	    	   psInsertar.setInt(3,-11);
-	     	    	   psInsertar.setString(4,"MenuAnulado");
-	   	        	   psInsertar.executeUpdate(); 
-	   	        } 
-	   	        catch (Exception e) 
-	   	        {   
-	   	            System.err.println("Warning: SELECT JOIN anularMenuconsumido: " + e.getMessage());    
-	   	        } 
-	   	    }
-	   	    
-	    
+	     
 	     
 	        public static void AnularImporteConsumido(int ID){
 	        	 
@@ -942,35 +707,8 @@ public class Basedatos {
 	   	            System.err.println("Warning: SELECT JOIN anularImporteConsumido: " + e.getMessage());    
 	   	        } 
 	   	    }
-	       public static void EliminarIDMenu(int ID){
-		    	  try
-		    	  {
-		    		st.executeUpdate(sqluse);
-		    	    sql = "DELETE FROM puntoscomida WHERE ID=?";
-		    	    psBorrar=con.prepareStatement(sql);
-		    	    psBorrar.setInt(1,ID);
-		    	    psBorrar.execute();     
-			     }
-		    	
-		         catch (Exception e) 
-			        {   
-			            System.err.println("Warning: SELECT JOIN puntoscomida:" + e.getMessage());    
-			        } 
-		       } 
-	       public static void EliminarUlMenu(int ID){
-	        	 
-        	   try 
-   	        {   
-   	        	
-   	            sql =" UPDATE tablaregalospendientes  SET PREMIOSMENUS=PREMIOSMENUS"+"-" +"1"+" WHERE id="+ID;
-   	        	st.executeUpdate(sql);
-   	        } 
-   	        catch (Exception e) 
-   	        {   
-   	            System.err.println("Warning: SELECT JOIN eliminarUltimoMenu: " + e.getMessage());    
-   	        } 
-   	    }
-   	    
+	    
+	     
 	       public static void EliminarIDImporte(int ID){
 		    	  try
 		    	  {
@@ -1142,56 +880,8 @@ public class Basedatos {
           
        
          
-          public static void insertTablaDesayunos(int ID,String Fecha){
-  	    		
-  	    		
-  	    { 
-  	        // Insertamos datos   
-  	        try 
-  	        {   st.executeUpdate(sqluse);
-  	            psInsertar=con.prepareStatement("INSERT INTO PuntosDesayunos VALUES (?,?,?,?,?)");
-  	            psInsertar.setInt(1,ID);
-  	            psInsertar.setString(2,Fecha);
-  	            psInsertar.setInt(3,0);
-  	    	    psInsertar.setString(4,"0");
-  	    	    psInsertar.setString(5,"0");
-	        	psInsertar.executeUpdate();
-  	        	
-  	        } 
-  	        catch (Exception e) 
-  	        {   
-  	            System.err.println("Warning: error on insert data: " + e.getMessage());    
-  	            e.printStackTrace(); 
-  	            return;  
-  	        }  
-  	    } 
+    
          
-       }
-          public static void insertTablaMenus(int ID, String Fecha){
-	    		
-	    		
-        	    { 
-        	        // Insertamos datos   
-        	        try 
-        	        {   st.executeUpdate(sqluse);
-        	            psInsertar=con.prepareStatement("INSERT INTO puntoscomida VALUES (?,?,?,?,?)");
-        	            psInsertar.setInt(1,ID);
-        	            psInsertar.setString(2,Fecha);
-        	            psInsertar.setInt(3,0);
-        	    	    psInsertar.setString(4,"0");
-        	    	    psInsertar.setString(5,"0");
-      	        	    psInsertar.executeUpdate();
-        	        	
-        	        } 
-        	        catch (Exception e) 
-        	        {   
-        	            System.err.println("Warning: error on insert data: " + e.getMessage());    
-        	            e.printStackTrace(); 
-        	            return;  
-        	        }  
-        	    } 
-               
-             }
             
           
           public static void insertConfiguracionLector(String Com, int longitudLector, int intervalomsg){
@@ -1380,8 +1070,7 @@ public class Basedatos {
                
             }
           
-          public static void insertTablaFidelizacion(int puntosDesayunos, String PremiosDesayunos, int puntosMenu, String PremiosMenu,int puntosImporte, String PremiosImporte, 
-           int puntospordesayuno, int puntospormenu, int puntosporimporte){
+          public static void insertTablaCatalogo( int coste, String Nombre, int codigo){
 	    		
 	    		
       	    { 
@@ -1390,34 +1079,57 @@ public class Basedatos {
       	        {  
       	        	BorrarTablaFidelizacion();
       	        	st.executeUpdate(sqluse);
-      	            psInsertar=con.prepareStatement("INSERT INTO PuntosFidelizacion  VALUES (?,?,?,?,?,?,?,?,?)");
-      	            psInsertar.setInt(1,puntosDesayunos);
-      	            psInsertar.setString(2,PremiosDesayunos);
-      	    	    psInsertar.setInt(3,puntosMenu);
-      	    	    psInsertar.setString(4,PremiosMenu);
-      	    	    psInsertar.setInt(5,puntosImporte);
-    	    	    psInsertar.setString(6,PremiosImporte);
-    	    	    psInsertar.setInt(7,puntospordesayuno);
-    	    	    psInsertar.setInt(8,puntospormenu);
-    	    	    psInsertar.setInt(9,puntosporimporte);
+      	            psInsertar=con.prepareStatement("INSERT INTO PuntosFidelizacion  VALUES (?,?,?)");
+      	          
+      	    	    psInsertar.setInt(1,codigo);
+    	    	    psInsertar.setString(2,Nombre);
+    	    	    psInsertar.setInt(3,coste);
     	        	psInsertar.executeUpdate();
-    	        	int puntosDesayunoActuales=puntospordesayuno;
-    	        	int puntosMenuActuales=puntospormenu;
-    	        	int puntosImporteActuales=puntosporimporte;
-    	        	Formulario.puntosporDesayuno=puntosDesayunoActuales;
-    	        	Formulario.puntosporMenu=puntosMenuActuales;
-    	        	Formulario.puntosporImporte=puntosImporteActuales;
-      	        	
-      	        } 
+    	        
+    	        
+    	       } 
       	        catch (Exception e) 
       	        {   
-      	            System.err.println("Warning: error on insert data: " + e.getMessage());    
+      	            System.err.println("Warning: error on insert data:Catalogo " + e.getMessage());    
       	            e.printStackTrace(); 
       	            return;  
       	        }  
       	    } 
              
            }
+          
+          
+          public static void insertTablaFidelizacion( int puntosImporte, String PremiosImporte, int puntosporimporte){
+	    		
+	    		
+        	    { 
+        	        // Insertamos datos   
+        	        try 
+        	        {  
+        	        	
+        	        	st.executeUpdate(sqluse);
+        	            psInsertar=con.prepareStatement("INSERT INTO   VALUES (?,?,?)");
+        	          
+        	    	 psInsertar.setInt(1,puntosImporte);
+      	    	    psInsertar.setString(2,PremiosImporte);
+      	    	 
+      	    	    psInsertar.setInt(3,puntosporimporte);
+      	        	psInsertar.executeUpdate();
+      	        
+      	        	int puntosImporteActuales=puntosporimporte;
+      	        	
+      	        	Formulario.puntosporImporte=puntosImporteActuales;
+        	        	
+        	        } 
+        	        catch (Exception e) 
+        	        {   
+        	            System.err.println("Warning: error on insert data: " + e.getMessage());    
+        	            e.printStackTrace(); 
+        	            return;  
+        	        }  
+        	    } 
+               
+             }
           
           public static void ConsultaFidelizacion() 
   	    { 
@@ -1431,21 +1143,39 @@ public class Basedatos {
   	           
   	            
   	            while(res.next()){
-  	            	int PuntosDesayunos=res.getInt("INCREMENTODESAYUNOS");
-  	            	String TipoPremiosD=res.getString("PREMIOSDESAYUNOS");
-  	            	int MenuPuntos=res.getInt("INCREMENTOMENU");
-  	            	String TipoPremiosM=res.getString("PREMIOSMENU");
+  	            
+  	            	
+  	            	
   	            	int PuntosImportes=res.getInt("INCREMENTOIMPORTE");
   	            	String TipoPremiosI=res.getString("PREMIOSIMPORTE");
-  	            	int puntospordesayuno=res.getInt("PUNTOSDESAYUNO");
-  	            	int puntospormenu=res.getInt("PUNTOSMENU");
-  	            	int puntosporimporte=res.getInt("PUNTOSIMPORTE");
+  	                int puntosporimporte=res.getInt("PUNTOSIMPORTE");
   	            	
-  	           FidelizacionAdministrador.ConsultarFidelizacion(MenuPuntos, TipoPremiosM, PuntosDesayunos, TipoPremiosD, PuntosImportes, 
-  	            TipoPremiosI,puntospordesayuno,puntospormenu,puntosporimporte);
+  	           FidelizacionAdministrador.ConsultarFidelizacion(  PuntosImportes,TipoPremiosI,puntosporimporte);
   	            	
   	            }
-  	            
+  	          public static void ConsultaCatalogoFidelizacion() 
+  	  	    { 
+  	  	    	
+  	  	        try 
+  	  	        {  
+  	  	            // Mostramos por pantalla todos los CLIENTES 
+  	  	        	 st.executeUpdate(sqluse);
+  	  	        	 sql = "SELECT * FROM CatalogoFidelizacion";
+  	  	            res = st.executeQuery(sql);
+  	  	           
+  	  	            
+  	  	            while(res.next()){
+  	  	            
+  	  	            	
+  	  	            	
+  	  	            	int Codigo=res.getInt("Codigo");
+  	  	            	String Nombre=res.getString("Nombre");
+  	  	                int Coste=res.getInt("Coste");
+  	  	            	
+  	  	           FidelizacionAdministrador.ConsultarCatalogoFidelizacion(Codigo,Nombre,Coste);
+  	  	            	
+  	  	            }
+  	  	            
   	 	
   	            
   	            // Free memory 
@@ -1472,14 +1202,9 @@ public class Basedatos {
     	            	int puntospordesayuno=res.getInt("PUNTOSDESAYUNO");
     	            	int puntospormenu=res.getInt("PUNTOSMENU");
     	            	int puntosporimporte=res.getInt("PUNTOSIMPORTE");
-    	                Formulario.puntosporDesayuno=puntospordesayuno;
-    	                Formulario.puntosporMenu=puntospormenu;
+    	              
     	                Formulario.puntosporImporte=puntosporimporte;
-    	                Formulario.premioPuntosDesayuno=res.getInt("INCREMENTODESAYUNOS");
-    	                Formulario.premioPuntosMenu=res.getInt("INCREMENTOMENU");
     	                Formulario.premioPuntosImporte=res.getInt("INCREMENTOIMPORTE");
-    	                Formulario.PremioDesayunoF=res.getString("PREMIOSDESAYUNOS");
-    	                Formulario.PremioMenuF=res.getString("PREMIOSMENU");
     	                Formulario.PremioImporteF=res.getString("PREMIOSIMPORTE");
     	            	
     	            }
@@ -1495,73 +1220,12 @@ public class Basedatos {
     	        } 
     	    }
     	    
-          public static void ActualizarSaldoPuntosMenu(String cantidad, int ID){
-	    	   
-	    	   try
-	    	   {
-	    		st.executeUpdate(sqluse);
-	    	   sql =" UPDATE puntoscomida SET PUNTOS_ACTUALES=PUNTOS_ACTUALES"+"+" +cantidad+" WHERE id="+ID;
-	    	   st.execute(sql);
-	    	
-		        }
-	    	   
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN puntoscomida: " + e.getMessage());    
-		        } 
-	    	   }
+     
            
-          public static void ActualizarSaldoPuntosMenuAnulada(String cantidad, int ID){
-	    	   
-	    	   try
-	    	   {
-	    		st.executeUpdate(sqluse);
-	    	   sql =" UPDATE puntoscomida SET PUNTOS_ACTUALES=PUNTOS_ACTUALES"+"-" +cantidad+" WHERE id="+ID;
-	    	   st.execute(sql);
-	    	
-		        }
-	    	   
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN puntoscomida: " + e.getMessage());    
-		        } 
-	    	   }
+         
           
-          public static void ActualizarSaldoPuntosDesayunos(String cantidad, int ID){
-	    	   
-	    	   try
-	    	   {
-	    		 st.executeUpdate(sqluse);
-	    	   sql =" UPDATE puntosdesayunos  SET PUNTOS_ACTUALES=PUNTOS_ACTUALES"+"+" +cantidad+" WHERE id="+ID;
-	    	   st.execute(sql);
-	    	
-		        }
-	    	   
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN puntoscomida: " + e.getMessage());    
-		        } 
-	    	   }
-          public static void ActualizarSaldoPuntosDesayunosAnulada(String cantidad, int ID){
-	    	   
-	    	   try
-	    	   {
-	    		 st.executeUpdate(sqluse);
-	    	   sql =" UPDATE puntosdesayunos  SET PUNTOS_ACTUALES=PUNTOS_ACTUALES"+"-" +cantidad+" WHERE id="+ID;
-	    	   st.execute(sql);
-	    	
-		        }
-	    	   
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN puntoscomida: " + e.getMessage());    
-		        } 
-	    	   }
-  	      
+       
+          
           public static void ActualizarContraseña(String Contraseña){
 	    	   
 	    	   try
@@ -1594,73 +1258,10 @@ public class Basedatos {
 		        } 
 	    	   }
        	  
-          public static void ActualizarTabladiariaDesayunos(int ID,String Fecha,String cantidad ){
-	    	   
-	    	   try
-	    	   {
-	    		   st.executeUpdate(sqluse);
-	    		   if(Fecha.equals(Formulario.getFecha_AnteriorMysql())){
-	    			 System.out.println(Fecha);
-	    			 sql =" UPDATE tabladiaria SET DESAYUNOS=DESAYUNOS"+"+"+cantidad+" WHERE ID="+ID;
-	    	    	 st.execute(sql);  
-	    	    	 }else{
-	    			   psInsertar=con.prepareStatement("INSERT INTO tabladiaria(ID,FECHA_DIARIA,DESAYUNOS) VALUES (?,?,?)");
-	     	           psInsertar.setInt(1,ID);
-	     	           psInsertar.setString(2,Fecha);
-	     	           int cantidadI=Integer.parseInt(cantidad);
-	     	    	   psInsertar.setInt(3,cantidadI);
-	   	        	   psInsertar.executeUpdate(); 
-	   	        	 System.out.println(Formulario.getFecha_AnteriorMysql()+Fecha);
-	    		   }
-	    	   }
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN TablaDiariaDesayunos: " + e.getMessage());    
-		        }
-	    	   
-	    	   }
+       
           
-          public static void AnularTabladiariaDesayunos(int ID,String Fecha,String cantidad ){
-	    	   
-	    	   try
-	    	   {
-	    		       psInsertar=con.prepareStatement("INSERT INTO tabladiaria(ID,FECHA_DIARIA,DESAYUNOS) VALUES (?,?,?)");
-	     	           psInsertar.setInt(1,ID);
-	     	           psInsertar.setString(2,Fecha);
-	     	           int cantidadI=Integer.parseInt(cantidad);
-	     	    	   psInsertar.setInt(3,-cantidadI);
-	   	        	   psInsertar.executeUpdate(); 
-	   	        	 System.out.println(Formulario.getFecha_AnteriorMysql()+Fecha);
-	    		   
-	    	   }
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN anularTablaDiariaDesayunos: " + e.getMessage());    
-		        }
-	    	   
-	    	   }
-          public static void AnularTabladiariaMenus(int ID,String Fecha,String cantidad ){
-	    	   
-	    	   try
-	    	   {
-	    		       psInsertar=con.prepareStatement("INSERT INTO tabladiaria(ID,FECHA_DIARIA,MENUS) VALUES (?,?,?)");
-	     	           psInsertar.setInt(1,ID);
-	     	           psInsertar.setString(2,Fecha);
-	     	           int cantidadI=Integer.parseInt(cantidad);
-	     	    	   psInsertar.setInt(3,-cantidadI);
-	   	        	   psInsertar.executeUpdate(); 
-	   	        	 System.out.println(Formulario.getFecha_AnteriorMysql()+Fecha);
-	    		   
-	    	   }
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN anularTablaDiariaDesayunos: " + e.getMessage());    
-		        }
-	    	   
-	    	   }
+         
+         
           public static void AnularTabladiariaImportes(int ID,String Fecha,String cantidad ){
 	    	   
 	    	   try
@@ -1681,113 +1282,16 @@ public class Basedatos {
 		        }
 	    	   
 	    	   }
-          public static void ActualizarTablaRegalosPendientesDesayuno(int ID,String Fecha,String cantidad ){
-	    	   
-	    	   try
-	    	   {       st.executeUpdate(sqluse);
-	    	   sql =" UPDATE TablaregalosPendientes  SET PREMIOSDESAYUNOS='"+cantidad+"'"+"WHERE id="+ID;
-	    		      st.executeUpdate(sql); 
-	    	   sql =" UPDATE TablaregalosPendientes  SET FECHA_DIARIA="+Fecha+"WHERE id="+ID;
-	    		      st.executeUpdate(sql);  
-	    	   }
-	    	   
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN TablaRegalosPendientesDesayuno: " + e.getMessage());    
-		        }
-	    	   
-	    	   }
-         
-          
-          public static void ActualizarTablaConsumoDesayunos(int ID,String Fecha,int cantidad,String Premio ){
-	    	   
-	    	   try
-	    	   {       st.executeUpdate(sqluse);
-	    		       psInsertar=con.prepareStatement("INSERT INTO tablaconsumodiario(ID,FECHA_DIARIA,CONSUMIDOSDESAYUNOS,PREMIOSDESAYUNOS) VALUES (?,?,?,?)");
-	     	           psInsertar.setInt(1,ID);
-	     	           psInsertar.setString(2,Fecha);
-	     	    	   psInsertar.setInt(3,cantidad);
-	     	    	   psInsertar.setString(4,Premio);
-	   	        	   psInsertar.executeUpdate(); 
-	   	        	 System.out.println(Formulario.getFecha_AnteriorMysql()+Fecha);
-	    		   
-	    	   }
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN TablaDiariaDesayunos: " + e.getMessage());    
-		        }
-	    	   
-	    	   }
-         
+                   
          
         
           
-          public static void ActualizarTabladiariaMenus(int ID,String Fecha,String cantidad ){
-	    	   
-	    	   try
-	    	   {    st.executeUpdate(sqluse);
-	    		   if(Fecha.equals(Formulario.getFecha_AnteriorMysql())){
-	    			 System.out.println("equals"+Formulario.getFecha_AnteriorMysql());
-	    			 sql =" UPDATE tabladiaria SET MENUS=MENUS"+"+"+cantidad+" WHERE ID="+ID;
-	    	    	 st.execute(sql);  
-	    	    	 }else{
-	    			   psInsertar=con.prepareStatement("INSERT INTO tabladiaria(ID,FECHA_DIARIA,MENUS) VALUES (?,?,?)");
-	     	           psInsertar.setInt(1,ID);
-	     	           psInsertar.setString(2,Fecha);
-	     	           int cantidadI=Integer.parseInt(cantidad);
-	     	    	   psInsertar.setInt(3,cantidadI);
-	   	        	   psInsertar.executeUpdate(); 
-	   	        	 System.out.println(Formulario.getFecha_AnteriorMysql()+Fecha);
-	    		   }
-	    	   }
+       
+	    
+        
 	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN TablaDiariaMenus: " + e.getMessage());    
-		        }
-	    	   
-	    	   }
-          public static void ActualizarTablaRegalosPendientesMenus(int ID,String Fecha,String cantidad ){
-	    	   
-	    	   try
-	    	   {       
-	    	          st.executeUpdate(sqluse);
-	    	     sql =" UPDATE TablaregalosPendientes  SET PREMIOSMENUS='"+cantidad+"'"+"WHERE id="+ID;
-	    		      st.executeUpdate(sql); 
-	    	    sql =" UPDATE TablaregalosPendientes  SET FECHA_DIARIA="+Fecha+"WHERE id="+ID;
-	    		      st.executeUpdate(sql);  
-	   	        	
-	    		   
-	    	   }
 	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN Tablaregalospendientesmenus: " + e.getMessage());    
-		        }
-	    	   
-	    	   }
-          public static void ActualizarTablaConsumoMenus(int ID,String Fecha,int cantidad,String Premio){
-	    	   
-	    	   try
-	    	   {       st.executeUpdate(sqluse);
-	    		       psInsertar=con.prepareStatement("INSERT INTO tablaconsumodiario(ID,FECHA_DIARIA,CONSUMIDOSMENUS,PREMIOSMENUS) VALUES (?,?,?,?)");
-	     	           psInsertar.setInt(1,ID);
-	     	           psInsertar.setString(2,Fecha);
-	     	    	   psInsertar.setInt(3,cantidad);
-	     	    	   psInsertar.setString(4,Premio);
-	   	        	   psInsertar.executeUpdate(); 
-	   	        	 System.out.println(Formulario.getFecha_AnteriorMysql()+Fecha);
-	    		   
-	    	   }
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN TablaDiariaDesayunos: " + e.getMessage());    
-		        }
-	    	   
-	    	   }
+      
           
           public static void ActualizarTablaConsumoImportes(int ID,String Fecha,String cantidad,String Premio ){
 	    	   
@@ -1816,6 +1320,23 @@ public class Basedatos {
 	    	   {
 	    		 st.executeUpdate(sqluse);
 	    	   sql =" UPDATE puntosimporte SET PUNTOS_ACTUALES=PUNTOS_ACTUALES"+"+" +cantidad+" WHERE id="+ID;
+	    	   st.execute(sql);
+	    	
+		        }
+	    	   
+	    	
+	    	   catch (Exception e) 
+		        {   
+		            System.err.println("Warning: SELECT JOIN saldopuntosimportes: " + e.getMessage());    
+		        } 
+	    	   }
+          
+          public static void ActualizarCatalogoFidelizacion(int codigo , int coste){
+	    	   
+	    	   try
+	    	   {
+	    		 st.executeUpdate(sqluse);
+	    	   sql =" UPDATE CatalogoFidelizacion SET coste=" +coste+" WHERE id="+codigo;
 	    	   st.execute(sql);
 	    	
 		        }
@@ -1889,44 +1410,10 @@ public class Basedatos {
 		            System.err.println("Warning: SELECT JOIN TablaDiariaImportes: " + e.getMessage());    
 		        }
 	    	  }
-          public static void ConsumirPuntosRegaloMenu(String cantidad, int ID){
-	    	   
-	    	   try
-	    	   {
-	    		   st.executeUpdate(sqluse);
-	    		 sql =" UPDATE puntoscomida SET PUNTOS_ACTUALES=PUNTOS_ACTUALES"+"-" +cantidad+" WHERE id="+ID;  
-	    	     st.execute(sql);
-	    	     ActualizarPremiosMenu(ID);    
-	    	
-		        }
-	    	   
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN puntoscomida: " + e.getMessage());    
-		        } 
-	    	   }
+        
           
           
-          
-          public static void ConsumirPuntosRegaloDesayunos(String cantidad, int ID){
-	    	   
-	    	   try
-	    	   {
-	    		   st.executeUpdate(sqluse);
-	    		 sql =" UPDATE puntosdesayunos SET PUNTOS_ACTUALES=PUNTOS_ACTUALES"+"-" +cantidad+" WHERE id="+ID;
-	    	     st.execute(sql);
-	    	     ActualizarPremiosDesayuno(ID);
-	    	
-		        }
-	    	   
-	    	
-	    	   catch (Exception e) 
-		        {   
-		            System.err.println("Warning: SELECT JOIN puntoscomida: " + e.getMessage());    
-		        } 
-	    	   }
-          
+        
           public static void ConsumirPuntosRegaloImportes(String cantidad, int ID){
 	    	   
 	    	   try
@@ -1946,127 +1433,8 @@ public class Basedatos {
 	    	   }
           
           
-          public static void ActualizarPremiosMenu(int ID)
-   	   
-    	  { 
-  	    	
-  	        try 
-  	        {  
-  	            // Mostramos por pantalla los puntos de desayunos seleccionados por el codigo 
-  	        	 sql = "SELECT * FROM puntoscomida WHERE id="+ID;//busca al cliente;
-  	            res = st.executeQuery(sql);
-  	            sqlpuntos="SELECT * FROM puntosfidelizacion";
-  	            res1=stpremios.executeQuery(sqlpuntos);//busca base fidelizacion
-  	           
-  	            while(res.next()){
-  	              int PuntosA=res.getInt("PUNTOS_ACTUALES");//obtiene los puntos actuales;
-  	              
-  	              while(res1.next()){
-  	              int puntospormenu=res1.getInt("PUNTOSMENU");
-  	              int PuntosMe=res1.getInt("INCREMENTOMENU");
-  	              
-  	              int PuntosMet=PuntosMe+puntospormenu;
-  	              System.out.println("puntosTotales Fidelizacion:" + PuntosA);//imprime por consola limitepuntos totales fidelizacion
-  	              String PremioMe=res1.getString("PREMIOSMENU");//Obtnemos el premio menu.
-  	             System.out.println("PremiosTotales Fidelizacion:" + PremioMe);//imprime por consola premios actual.
-  	          	   System.out.println("Puntos totales: "+PuntosA);
-  	               if(PuntosMe!=0 && PuntosA>=PuntosMe)
-  	               {//compara los puntos actuales con los puntos de fidelizacion
-  	            	  
-  	            	System.out.println("Puntos totales1: "+PuntosA);
-  	                sql =" UPDATE puntoscomida SET Regalos_Acumulados='"+PremioMe+"'"+"WHERE id="+ID;
-  	                st.execute(sql);//guarda el premio seleccionado en la base de datos clientes;
-  	                Formulario.CONSUMIRPREMIOSMENU.setEnabled(true);
-  	                Formulario.TipoUltimaOperacionPremio="PremioMenu";
-	                Formulario.UltimaOperacionPremio="0";
-	                if(PuntosA!=0){
-	                	  int	RegalosPendientes=PuntosA/PuntosMe;
-	   	                String pendientes=String.valueOf(RegalosPendientes);
-	 	                 ActualizarTablaRegalosPendientesMenus(ID,Formulario.FechaEntradaMysql,pendientes);
-	 	                }
-	 	          	
-	 	          	      JOptionPane.showMessageDialog(
-		      				   Formulario.ventana,
-		      				   "has conseguido el siguiente Premio acumulado para la siguiente sesion: "+PremioMe,"Premio",JOptionPane.WARNING_MESSAGE,Formulario.AlarmaPremio);
-	 	            	}
-	 	             if(PuntosMe!=0 && PuntosA>=PuntosMet){
-	 	            	Formulario.restarpuntos_consumirpremiosmenu=PuntosMet; 
-	 	             }else{
-		            		  sql =" UPDATE puntoscomida SET Regalos_Acumulados='"+0+"'"+"WHERE id="+ID;
-		  	  	          	    st.execute(sql);//sino hay premio pone un cero.
-		  	  	          	    Formulario.CONSUMIRPREMIOSMENU.setEnabled(false);
-		  	             }
-	 	             }
-	 	            	}
-  	              
-  	           // Free memory 
-  	            res.close(); 
-  	            res1.close();
-    	  }
-  	        catch (Exception e) 
-  	        {   
-  	            System.err.println("Warning: SELECT JOIN actualizarPremiosMenu: " + e.getMessage());    
-  	        }
-  	    }
-          public static void ActualizarPremiosDesayuno(int ID)
-      	   
-    	  { 
-  	    	
-  	        try 
-  	        {  
-  	            // Mostramos por pantalla los puntos de desayunos seleccionados por el codigo 
-  	        	 sql = "SELECT * FROM puntosdesayunos WHERE id="+ID;//busca al cliente;
-  	            res = st.executeQuery(sql);
-  	            sqlpuntos="SELECT * FROM puntosfidelizacion";
-  	            res1=stpremios.executeQuery(sqlpuntos);//busca base fidelizacion
-  	           
-  	            while(res.next()){
-  	              int PuntosA=res.getInt("PUNTOS_ACTUALES");//obtiene los puntos actuales;
-  	              
-  	              while(res1.next()){
-  	              int puntospordesayuno=res1.getInt("PUNTOSDESAYUNO");
-  	              int PuntosDe=res1.getInt("INCREMENTODESAYUNOS");
-  	               int PuntosDet=PuntosDe+puntospordesayuno;
-  	              System.out.println("puntosTotales Fidelizacion:" + PuntosA);//imprime por consola limitepuntos totales fidelizacion
-  	              String PremioDe=res1.getString("PREMIOSDESAYUNOS");//Obtnemos el premio menu.
-  	             System.out.println("PremiosTotales Fidelizacion:" + PremioDe);//imprime por consola premios actual.
-  	          	   System.out.println("Puntos totales: "+PuntosA);
-  	          	 if(PuntosDe!=0 && PuntosA>=PuntosDe){//compara los puntos actuales con los puntos de fidelizacion
- 	            	  System.out.println("Puntos totales1: "+PuntosA);
- 	                sql =" UPDATE puntosdesayunos SET Regalos_Acumulados='"+PremioDe+"'"+"WHERE id="+ID;
- 	                Formulario.CONSUMIRPREMIOSDESAYUNO.setEnabled(true);
- 	                Formulario.TipoUltimaOperacionPremio="PremioDesayuno";
-	                Formulario.UltimaOperacionPremio="0";
-	               st.execute(sql);//guarda el premio seleccionado en la base de datos clientes;
- 	                if(PuntosA!=0){
- 	                int	RegalosPendientes=PuntosA/PuntosDe;
- 	                String pendientes=String.valueOf(RegalosPendientes);
- 	                 ActualizarTablaRegalosPendientesDesayuno(ID,Formulario.FechaEntradaMysql,pendientes);
- 	                }
- 	          	
- 	          	      JOptionPane.showMessageDialog(
-	      				   Formulario.ventana,
-	      				   "has conseguido el siguiente Premio acumulado para la siguiente sesion: "+PremioDe,"Premio",JOptionPane.WARNING_MESSAGE,Formulario.AlarmaPremio);
- 	            	}
- 	             if(PuntosDe!=0 && PuntosA>=PuntosDet){
- 	            	Formulario.restarpuntos_consumirpremiosdesayuno=PuntosDet; 
- 	             }else{
-	            		  sql =" UPDATE puntosdesayunos SET Regalos_Acumulados='"+0+"'"+"WHERE id="+ID;
-	  	  	          	    st.execute(sql);//sino hay premio pone un cero.
-	  	  	          	    Formulario.CONSUMIRPREMIOSDESAYUNO.setEnabled(false);
-	  	             }
- 	             }
- 	            	}
-  	              
-  	            // Free memory 
-  	            res.close(); 
-  	            res1.close();
-    	  }
-  	        catch (Exception e) 
-  	        {   
-  	            System.err.println("Warning: SELECT JOIN actualizarPremiosdesayunos: " + e.getMessage());    
-  	        }
-  	    }
+      
+        
           
           public static void ActualizarPremiosImporte(int ID)
      	   
@@ -2128,25 +1496,7 @@ public class Basedatos {
   	        }
   	    }
   	        
-          public static void ConsumirPremiosMenu(int ID){
-        	  
-          	   try
-       	   {
-       	   
-       	   sql =" UPDATE puntoscomida SET Regalos_Acumulados='"+0+"'"+"WHERE id="+ID;
-       	   st.execute(sql);
-       	   String LimitePuntos=String.valueOf(Formulario.restarpuntos_consumirpremiosmenu);
-       	         ConsumirPuntosRegaloMenu(LimitePuntos,ID);
-       	         PremioConsumidoMenu(ID);
-       		     EliminarUlMenu(ID);
-       		}
-       	   
-       	
-       	   catch (Exception e) 
-   	        {   
-   	            System.err.println("Warning: SELECT JOIN puntoscomida: " + e.getMessage());    
-   	        } 
-       	   }
+      
           public static void PremioConsumidoImporte(int ID){
           	
           	try
@@ -2179,59 +1529,8 @@ public class Basedatos {
      	        } 
          	   }
           
-          public static void ConsumirPremiosDesayuno(int ID){
-        	  
-         	   try
-      	   {
-      	   
-      	   sql =" UPDATE puntosdesayunos SET Regalos_Acumulados='"+0+"'"+"WHERE id="+ID;
-    	   st.execute(sql);
-    	  
-      	   String LimitePuntos=String.valueOf(Formulario.restarpuntos_consumirpremiosdesayuno);
-      		     ConsumirPuntosRegaloDesayunos(LimitePuntos,ID);
-      		     PremioConsumidoDesayuno(ID);
-      		     EliminarUlDesayuno(ID);
-      		  
-      		     
-      		}
-      	   
-      	
-      	   catch (Exception e) 
-  	        {   
-  	            System.err.println("Warning: SELECT JOIN puntosdesayuno: " + e.getMessage());    
-  	        } 
-      	   }
-          public static void PremioConsumidoDesayuno(int ID){
-        	
-        	try
-     	   {
-        	sql =" UPDATE puntosdesayunos  SET REGALOS_CONSUMIDOS=REGALOS_CONSUMIDOS"+"+" +1+" WHERE id="+ID;
-     	   st.execute(sql);
-     	    
-     		}
-     	   
-     	
-     	   catch (Exception e) 
- 	        {   
- 	            System.err.println("Warning: SELECT JOIN puntosdesayuno: " + e.getMessage());    
- 	        } 
-     	   }
-          public static void AnularPremioConsumidoDesayuno(int ID){
-          	
-          	try
-       	   {
-          	sql =" UPDATE puntosdesayunos  SET REGALOS_CONSUMIDOS=REGALOS_CONSUMIDOS"+"-" +1+" WHERE id="+ID;
-       	   st.execute(sql);
-       	    
-       		}
-       	   
-       	
-       	   catch (Exception e) 
-   	        {   
-   	            System.err.println("Warning: SELECT JOIN puntosdesayuno: " + e.getMessage());    
-   	        } 
-       	   }
-          
+     
+         
           public static void ConsumirPremiosImporte(int ID){
         	  
         	   try
@@ -2252,36 +1551,9 @@ public class Basedatos {
  	            System.err.println("Warning: SELECT JOIN puntosimportes: " + e.getMessage());    
  	        } 
      	   }
-          public static void PremioConsumidoMenu(int ID){
-          	
-          	try
-       	   {
-           sql =" UPDATE puntoscomida  SET REGALOS_CONSUMIDOS=REGALOS_CONSUMIDOS"+"+" +1+" WHERE id="+ID;
-       	   st.execute(sql);
-       	   
-       	   }
-       	
-       	   catch (Exception e) 
-   	        {   
-   	            System.err.println("Warning: SELECT JOIN puntosdesayuno: " + e.getMessage());    
-   	        } 
-       	   }
-           
-          public static void AnularPremioConsumidoMenu(int ID){
-            	
-            	try
-         	   {
-             sql =" UPDATE puntoscomida  SET REGALOS_CONSUMIDOS=REGALOS_CONSUMIDOS"+"-" +1+" WHERE id="+ID;
-         	   st.execute(sql);
-         	   
-         	   }
-         	
-         	   catch (Exception e) 
-     	        {   
-     	            System.err.println("Warning: SELECT JOIN puntosdesayuno: " + e.getMessage());    
-     	        } 
-            }
           
+           
+    
            public static void ConsultarTablasClientes(){
 	  
 	       try
@@ -2317,36 +1589,7 @@ public class Basedatos {
  	  
         }
            
-           public static void ConsultarTablasMenus(){
-        		  
-    	       try
-    	       {
-    	    	   sql = "SELECT * FROM puntoscomida";
-    	           res = st.executeQuery(sql);
-    	           
-    	            
-    	            while(res.next()){
-    	            	
-    	 	            int ID=res.getInt("ID");
-    	 	            int PUNTOS_ACTUALES=res.getInt("PUNTOS_ACTUALES");
-    	 	            String REGALOS_ACUMULADOS=res.getString("REGALOS_ACUMULADOS");
-    	 	            String REGALOS_CONSUMIDOS=res.getString("REGALOS_CONSUMIDOS");
-    	 	            
-    	 	           ConsultasMenus.modelo.addRow( new Object[] {ID,PUNTOS_ACTUALES,REGALOS_ACUMULADOS,REGALOS_CONSUMIDOS} ); 
-    	        
-    		  }
-    	   
-    	       }      
-    	
-    	      catch (Exception e) 
-             {   
-             System.err.println("Warning: SELECT JOIN puntoscomida: " + e.getMessage());    
-             } 
-    	      
-               
-     	  
-     	  
-            }
+       
            
            public static void ConsultarTablasImportes(){
      		  
@@ -2375,32 +1618,7 @@ public class Basedatos {
              } 
     	  }
            
-           public static void ConsultarTablasDesayunos(){
-      		  
-    	       try
-    	       {
-    	    	   sql = "SELECT * FROM puntosdesayunos";
-    	           res = st.executeQuery(sql);
-    	           
-    	            
-    	            while(res.next()){
-    	            	
-    	 	            int ID=res.getInt("ID");
-    	 	            int PUNTOS_ACTUALES=res.getInt("PUNTOS_ACTUALES");
-    	 	            String REGALOS_ACUMULADOS=res.getString("REGALOS_ACUMULADOS");
-    	 	            String REGALOS_CONSUMIDOS=res.getString("REGALOS_CONSUMIDOS");
-    	 	            
-    	 	           ConsultasDesayunos.modelo.addRow( new Object[] {ID,PUNTOS_ACTUALES,REGALOS_ACUMULADOS,REGALOS_CONSUMIDOS} ); 
-    	        
-    		  }
-    	   
-    	       }      
-    	
-    	      catch (Exception e) 
-             {   
-             System.err.println("Warning: SELECT JOIN puntosdesayunos: " + e.getMessage());    
-             } 
-    	  }
+    
            public static void ConsultarTablaConsumo(int ID){
        		  
     	       try
@@ -2413,19 +1631,12 @@ public class Basedatos {
     	            	
     	            	
     	 	            String FechaTabla=res.getString("FECHA_DIARIA");
-    	 	            int desayunos=res.getInt("CONSUMIDOSDESAYUNOS");
-    	 	            int menus=res.getInt("CONSUMIDOSMENUS");
+    	 	            
     	 	            int importes=res.getInt("CONSUMIDOSIMPORTES");
-    	 	            String PremioDesayuno=res.getString("PREMIOSDESAYUNOS");
-    	 	            String PremioMenu=res.getString("PREMIOSMENUS");
+    	 	      
     	 	            String PremioImporte=res.getString("PREMIOSIMPORTES");
     	 	            
-    	 	           if(desayunos!=0){
-    	 	           ConsultaPuntosConsumidosDiarios.modelo.addRow( new Object[] {FechaTabla,desayunos,PremioDesayuno} ); 
-    	 	           }
-    	 	           if(menus!=0){
-    	 	        	ConsultaPuntosConsumidosDiarios.modelo.addRow( new Object[] {FechaTabla,menus,PremioMenu} ); 
-    	 	           }
+    	 	    
     	 	           if(importes!=0){
    	 	               ConsultaPuntosConsumidosDiarios.modelo.addRow( new Object[] {FechaTabla,importes,PremioImporte} ); 
    	 	               }
@@ -2450,11 +1661,10 @@ public class Basedatos {
     	            	
     	            	
     	 	            String FechaTabla=res.getString("FECHA_DIARIA");
-    	 	            int desayunos=res.getInt("DESAYUNOS");
-    	 	            int menus=res.getInt("MENUS");
+    	 	        
     	 	            int importes=res.getInt("IMPORTES");
     	 	            
-    	 	           ConsultaPuntosActualesDiarios.modelo.addRow( new Object[] {FechaTabla,desayunos,menus,importes} ); 
+    	 	           ConsultaPuntosActualesDiarios.modelo.addRow( new Object[] {FechaTabla,importes} ); 
     	        
     		  }
     	   
@@ -2475,10 +1685,8 @@ public class Basedatos {
     	           
     	              while(res.next()){
     	            	String FechaTabla=res.getString("FECHA_DIARIA");
-    	 	            String desayunos=res.getString("PREMIOSDESAYUNOS");
-    	 	            String menus=res.getString("PREMIOSMENUS");
     	 	            String importes=res.getString("PREMIOSIMPORTES");
-    	 	         ConsultaRegalosPendientes.modelo.addRow( new Object[] {FechaTabla,desayunos,menus,importes} ); 
+    	 	         ConsultaRegalosPendientes.modelo.addRow( new Object[] {FechaTabla,importes} ); 
     	        
     		  }
     	   

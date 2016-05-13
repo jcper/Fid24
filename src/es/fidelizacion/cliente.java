@@ -85,8 +85,6 @@ public class cliente implements ActionListener {
                 Basedatos.insertData(textField[0].getText(), textField[1].getText(),textField[2].getText(),textField[3].getText(),
                 textField[4].getText(),FechaAlta,textField[5].getText(),textField[6].getText());
                 Basedatos.ObtenerIDCliente(textField[0].getText());
-                Basedatos.insertTablaDesayunos(ID,FechaAlta);
-                Basedatos.insertTablaMenus(ID,FechaAlta);
                 Basedatos.insertTablaImportes(ID,FechaAlta);
                 Basedatos.insertTablaDiaria(ID,FechaAlta);
                 Basedatos.insertTablaConsumoDiario(ID,FechaAlta);
